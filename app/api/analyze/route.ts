@@ -131,33 +131,11 @@ export async function POST(req: NextRequest) {
         
         // Check if AI service is configured
         if (!AI_API_URL) {
-          console.log(`[${requestId}] ⚠️ AI_API_URL not configured, using mock data`);
-          
-          // Generate mock data based on image filename (for demo)
-          const mockTitle = imageFile.name 
-            ? imageFile.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, ' ')
-            : 'Premium Product';
-          
           return NextResponse.json({
-            success: true,
+            success: false,
+            error: 'AI image analysis is not configured. Set OPENROUTER_API_KEY to enable real product photo analysis.',
             type: 'ai-analysis',
-            listing: {
-              title: mockTitle,
-              description: `This high-quality ${mockTitle.toLowerCase()} is in excellent condition. Perfect for anyone looking for a reliable product that delivers exceptional value.`,
-              category: 'electronics',
-              condition: 'good',
-              price: 49.99,
-              brand: 'Generic',
-              confidence: 0.85,
-              estimatedValue: '45-60',
-              suggestedTags: ['electronics', 'gadget', 'like-new']
-            },
-            formTemplate: {
-              condition: ['excellent', 'good', 'fair', 'poor'],
-              deliveryType: ['shipping', 'pickup', 'both'],
-              paymentMethod: ['cash', 'bank transfer', 'mobile money']
-            }
-          });
+          }, { status: 503 });
         }
         
         // Forward to actual AI service

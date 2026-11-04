@@ -31,6 +31,12 @@ npm run dev
 # Open http://localhost:3000
 ```
 
+## Seller dashboard domain
+
+To serve seller dashboards from a dedicated origin, set `NEXT_PUBLIC_SELLER_APP_URL` to the full seller app origin in the frontend deployment (for example, `https://seller.koombo.com`) and point that domain at the same Next.js deployment. Set `SELLER_APP_URL` to the same origin in the backend deployment so its CORS allowlist accepts the seller app. Requests to `/sellers/:sellerId` on the main site redirect to that origin, and seller onboarding dashboard links use it directly. Leave the frontend variable unset to keep dashboards on the current host.
+
+Seller dashboard profile and seller-filtered listing requests require a seller token. New seller signups create a password, and sellers can sign in at `/seller/signin`. Older seller accounts without a password need support-assisted access recovery.
+
 ## How it works
 
 ```

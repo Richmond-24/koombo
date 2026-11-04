@@ -1,19 +1,29 @@
 
 import type { Metadata } from 'next'
+import LokiChatButton from './components/LokiChatButton'
+import ScrollReveal from './components/ScrollReveal'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'ListAI — Snap. List. Sell.',
-  description: 'Upload a product photo. AI fills your entire listing instantly.',
+  title: 'Koombo | Seller Listing',
+  description: 'List products directly from Telegram or WhatsApp. AI handles the rest.',
   icons: {
-    icon: '/favicon.ico', // This references the file in public/folder
+    icon: '/favicon.ico', // This references the file in public/
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" data-scroll-behavior="smooth">
+      <body className="antialiased">
+        <ScrollReveal />
+        {children}
+        <LokiChatButton />
+      </body>
     </html>
   )
 }

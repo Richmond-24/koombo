@@ -6,6 +6,10 @@ const nextConfig = {
       bodySizeLimit: '10mb',
     },
   },
+  outputFileTracingRoot: __dirname,
+  turbopack: {
+    root: __dirname,
+  },
 }
 
 module.exports = nextConfig
