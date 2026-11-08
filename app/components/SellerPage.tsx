@@ -40,7 +40,7 @@ export default function KoomboSellerSignup() {
       id="vendors"
       className="relative min-h-screen w-full overflow-hidden bg-white text-[#222222] antialiased"
       style={{
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+        fontFamily: '"Lufga", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
         textRendering: "optimizeLegibility",
         WebkitFontSmoothing: "antialiased",
         MozOsxFontSmoothing: "grayscale",

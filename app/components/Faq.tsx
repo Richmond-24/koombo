@@ -203,7 +203,7 @@ export default function FAQSection() {
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           {/* LEFT COLUMN — FAQ QUESTIONS */}
           <div>
-            <h2 className="mb-8 text-6xl font-black tracking-tight text-[#4C1D95] sm:text-7xl lg:text-8xl">
+            <h2 className="kb-section-title mb-8 text-[#4C1D95]">
               FAQs.
             </h2>
 
@@ -263,7 +263,7 @@ export default function FAQSection() {
 
           {/* RIGHT COLUMN — DESKTOP ANSWER PANEL */}
           <div className="hidden self-start lg:sticky lg:top-24 lg:block">
-            <h2 className="mb-8 text-6xl font-black tracking-tight text-[#4C1D95] sm:text-7xl lg:text-8xl">
+            <h2 className="kb-section-title mb-8 text-[#4C1D95]">
               Ans.
             </h2>
 

@@ -331,6 +331,10 @@ function ArcCarousel({ onSelect }: { onSelect: (id: string) => void }) {
 /* One brand color only: #3A1D6E (deep purple), used as a solid fill,  */
 /* with white and tints (opacity) of that same color. No gradients,    */
 /* glow blobs or extra accent colors.                                  */
+/*                                                                     */
+/* Mobile order:  heading + tabs -> chat card -> points + button       */
+/* Desktop:       left column (heading, tabs, points, button)          */
+/*                right column (chat card, vertically centred)         */
 /* ------------------------------------------------------------------ */
 
 function LokiSection() {
@@ -338,35 +342,35 @@ function LokiSection() {
   const role = LOKI_ROLES.find((r) => r.id === roleId) ?? LOKI_ROLES[0];
 
   return (
-    <section className="px-4 pb-16 sm:px-8 md:pb-28" aria-labelledby="loki-heading">
+    <section className="px-3 pb-12 sm:px-8 md:pb-28" aria-labelledby="loki-heading">
       <Reveal y={40}>
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-3xl bg-[#3A1D6E] text-white sm:rounded-[2.5rem]">
-          <div className="grid items-center gap-8 px-5 py-9 sm:gap-10 sm:px-10 sm:py-14 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 lg:px-16 lg:py-20">
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.75rem] bg-[#3A1D6E] text-white sm:rounded-[2.5rem]">
+          <div className="grid gap-6 px-4 py-7 sm:gap-8 sm:px-10 sm:py-12 lg:grid-cols-[1.05fr_.95fr] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-0 lg:px-16 lg:py-20">
 
-            {/* ---------- LEFT: info ---------- */}
-            <div className="min-w-0">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/25 px-3.5 py-1.5 text-xs font-semibold text-white">
-                <Sparkles size={14} aria-hidden />
+            {/* ---------- A: heading + tabs ---------- */}
+            <div className="min-w-0 lg:col-start-1 lg:row-start-1">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/25 px-3 py-1 text-[11px] font-semibold text-white sm:px-3.5 sm:py-1.5 sm:text-xs">
+                <Sparkles size={13} aria-hidden />
                 Meet Loki
               </span>
 
               <h2
                 id="loki-heading"
-                className="mt-4 text-[1.9rem] font-extrabold leading-[1.1] tracking-tight sm:mt-5 sm:text-5xl"
+                className="mt-3 text-[1.6rem] font-extrabold leading-[1.1] tracking-tight min-[380px]:text-[1.85rem] sm:mt-5 sm:text-5xl"
               >
                 Loki, our custom AI assistant
               </h2>
 
-              <p className="mt-3 max-w-lg text-[0.95rem] leading-7 text-white/75 sm:mt-4 sm:text-lg sm:leading-8">
-                Loki is built into Koombo to make the work easier for everyone
-                who uses it, from first search to final sale.
+              <p className="mt-2 max-w-lg text-[0.88rem] leading-6 text-white/75 sm:mt-4 sm:text-lg sm:leading-8">
+                Built into Koombo to make the work easier for everyone, from
+                first search to final sale.
               </p>
 
-              {/* role tabs: 3 equal columns on phones, compact pill on larger screens */}
+              {/* role tabs */}
               <div
                 role="tablist"
                 aria-label="How Loki helps"
-                className="mt-6 grid w-full grid-cols-3 gap-1 rounded-2xl border border-white/20 p-1 sm:mt-8 sm:inline-grid sm:w-auto sm:rounded-full sm:p-1.5"
+                className="mt-5 grid w-full grid-cols-3 gap-1 rounded-2xl border border-white/20 p-1 sm:mt-8 sm:inline-grid sm:w-auto sm:rounded-full sm:p-1.5"
               >
                 {LOKI_ROLES.map(({ id, label, icon: Icon }) => {
                   const selected = id === roleId;
@@ -377,88 +381,57 @@ function LokiSection() {
                       type="button"
                       aria-selected={selected}
                       onClick={() => setRoleId(id)}
-                      className={`flex min-w-0 flex-col items-center justify-center gap-1 rounded-xl px-2 py-2.5 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:flex-row sm:gap-2 sm:rounded-full sm:px-5 sm:py-2.5 sm:text-sm ${
+                      className={`flex min-w-0 items-center justify-center gap-1.5 rounded-xl px-1.5 py-2 text-[11px] font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white min-[380px]:text-xs sm:gap-2 sm:rounded-full sm:px-5 sm:py-2.5 sm:text-sm ${
                         selected
                           ? "bg-white text-[#3A1D6E]"
                           : "text-white/80 hover:bg-white/10"
                       }`}
                     >
-                      <Icon size={16} aria-hidden />
+                      <Icon size={15} aria-hidden className="shrink-0" />
                       <span className="truncate">{label}</span>
                     </button>
                   );
                 })}
               </div>
-
-              {/* active role content */}
-              <div key={role.id} role="tabpanel" className="animate-fade-in-up">
-                <h3 className="mt-6 text-xl font-extrabold tracking-tight sm:mt-7 sm:text-3xl">
-                  {role.title}
-                </h3>
-
-                <ul className="mt-4 space-y-3 sm:mt-5">
-                  {role.points.map((point) => (
-                    <li
-                      key={point}
-                      className="flex items-start gap-3 text-[0.92rem] leading-6 text-white/85 sm:text-[0.95rem] sm:leading-7"
-                    >
-                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white/15 sm:mt-1">
-                        <Check size={14} strokeWidth={3} aria-hidden />
-                      </span>
-                      <span className="min-w-0">{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* send us */}
-              <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center sm:gap-5">
-                <button
-                  type="button"
-                  onClick={openLokiChat}
-                  className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 font-bold text-[#3A1D6E] transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/40 sm:w-auto sm:py-4"
-                >
-                  Send us a message
-                  <Send
-                    size={18}
-                    aria-hidden
-                    className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  />
-                </button>
-                <p className="text-sm text-white/65">
-                  Questions or ideas? We would love to hear from you.
-                </p>
-              </div>
             </div>
 
-            {/* ---------- RIGHT: chat preview ---------- */}
-            <Reveal x={0} y={24} delay={120} className="min-w-0">
-              <div className="mx-auto w-full max-w-md lg:ml-auto">
-                <div className="overflow-hidden rounded-3xl bg-white text-[#20201F]">
+            {/* ---------- B: chat preview card ---------- */}
+            <Reveal
+              x={0}
+              y={24}
+              delay={120}
+              className="min-w-0 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center"
+            >
+              <div className="mx-auto w-full max-w-[22rem] sm:max-w-md lg:ml-auto lg:mr-0">
+                <div className="overflow-hidden rounded-2xl bg-white text-[#20201F] shadow-[0_10px_30px_rgba(0,0,0,0.18)] sm:rounded-3xl">
 
                   {/* header */}
-                  <div className="flex items-center gap-3 border-b border-[#3A1D6E]/15 px-4 py-3.5 sm:px-5 sm:py-4">
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#3A1D6E] text-white">
-                      <Sparkles size={18} aria-hidden />
+                  <div className="flex items-center gap-2.5 border-b border-[#3A1D6E]/15 px-3.5 py-2.5 sm:gap-3 sm:px-5 sm:py-4">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#3A1D6E] text-white sm:h-10 sm:w-10">
+                      <Sparkles size={16} aria-hidden />
                     </span>
                     <div className="min-w-0">
-                      <p className="text-sm font-extrabold leading-tight text-[#3A1D6E]">Loki</p>
-                      <p className="truncate text-xs text-[#3A1D6E]/65">Koombo assistant</p>
+                      <p className="text-[13px] font-extrabold leading-tight text-[#3A1D6E] sm:text-sm">
+                        Loki
+                      </p>
+                      <p className="truncate text-[11px] text-[#3A1D6E]/65 sm:text-xs">
+                        Koombo assistant
+                      </p>
                     </div>
-                    <span className="ml-auto shrink-0 rounded-full border border-[#3A1D6E]/25 px-2.5 py-1 text-[10px] font-bold text-[#3A1D6E]/70">
+                    <span className="ml-auto shrink-0 rounded-full border border-[#3A1D6E]/25 px-2 py-0.5 text-[9px] font-bold text-[#3A1D6E]/70 sm:px-2.5 sm:py-1 sm:text-[10px]">
                       Example
                     </span>
                   </div>
 
-                  {/* messages */}
+                  {/* messages: small fixed min-height so switching tabs doesn't jump the page */}
                   <div
                     key={role.id}
-                    className="animate-fade-in-up flex min-h-[210px] flex-col justify-end gap-3 px-4 py-5 text-sm leading-6 sm:min-h-[250px]"
+                    className="animate-fade-in-up flex min-h-[150px] flex-col justify-end gap-2.5 px-3.5 py-4 text-[13px] leading-[1.45] sm:min-h-[250px] sm:gap-3 sm:px-4 sm:py-5 sm:text-sm sm:leading-6"
                   >
-                    <p className="max-w-[88%] self-end break-words rounded-2xl rounded-br-sm bg-[#3A1D6E] px-4 py-2.5 text-white">
+                    <p className="max-w-[88%] self-end break-words rounded-2xl rounded-br-sm bg-[#3A1D6E] px-3.5 py-2 text-white sm:px-4 sm:py-2.5">
                       {role.question}
                     </p>
-                    <p className="max-w-[90%] self-start break-words rounded-2xl rounded-bl-sm bg-[#3A1D6E]/10 px-4 py-2.5 text-[#3A1D6E]">
+                    <p className="max-w-[92%] self-start break-words rounded-2xl rounded-bl-sm bg-[#3A1D6E]/10 px-3.5 py-2 text-[#3A1D6E] sm:max-w-[90%] sm:px-4 sm:py-2.5">
                       {role.answer}
                     </p>
                   </div>
@@ -466,16 +439,59 @@ function LokiSection() {
                   {/* fake input */}
                   <div
                     aria-hidden
-                    className="flex items-center gap-3 border-t border-[#3A1D6E]/15 px-4 py-3"
+                    className="flex items-center gap-2.5 border-t border-[#3A1D6E]/15 px-3.5 py-2 sm:gap-3 sm:px-4 sm:py-3"
                   >
-                    <span className="flex-1 text-sm text-[#3A1D6E]/50">Ask Loki anything…</span>
-                    <span className="grid h-9 w-9 place-items-center rounded-full bg-[#3A1D6E] text-white">
-                      <Send size={15} />
+                    <span className="min-w-0 flex-1 truncate text-[13px] text-[#3A1D6E]/50 sm:text-sm">
+                      Ask Loki anything…
+                    </span>
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#3A1D6E] text-white sm:h-9 sm:w-9">
+                      <Send size={14} />
                     </span>
                   </div>
                 </div>
               </div>
             </Reveal>
+
+            {/* ---------- C: role details + button ---------- */}
+            <div className="min-w-0 lg:col-start-1 lg:row-start-2">
+              <div key={role.id} role="tabpanel" className="animate-fade-in-up">
+                <h3 className="text-lg font-extrabold tracking-tight sm:mt-7 sm:text-3xl">
+                  {role.title}
+                </h3>
+
+                <ul className="mt-3 space-y-2.5 sm:mt-5 sm:space-y-3">
+                  {role.points.map((point) => (
+                    <li
+                      key={point}
+                      className="flex items-start gap-2.5 text-[0.88rem] leading-6 text-white/85 sm:gap-3 sm:text-[0.95rem] sm:leading-7"
+                    >
+                      <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-white/15 sm:mt-1 sm:h-6 sm:w-6">
+                        <Check size={12} strokeWidth={3} aria-hidden />
+                      </span>
+                      <span className="min-w-0">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-6 flex flex-col gap-2.5 sm:mt-9 sm:flex-row sm:items-center sm:gap-5">
+                <button
+                  type="button"
+                  onClick={openLokiChat}
+                  className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#3A1D6E] transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/40 sm:w-auto sm:px-7 sm:py-4 sm:text-base"
+                >
+                  Send us a message
+                  <Send
+                    size={17}
+                    aria-hidden
+                    className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
+                </button>
+                <p className="text-center text-xs text-white/65 sm:text-left sm:text-sm">
+                  Questions or ideas? We would love to hear from you.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </Reveal>

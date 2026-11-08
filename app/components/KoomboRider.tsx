@@ -42,7 +42,7 @@ export default function KoomboRiderSignup({
       id="rider"
       className="relative min-h-screen w-full overflow-hidden bg-white text-[#24133F] antialiased"
       style={{
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+        fontFamily: '"Lufga", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
         textRendering: "optimizeLegibility",
         WebkitFontSmoothing: "antialiased",
         MozOsxFontSmoothing: "grayscale",

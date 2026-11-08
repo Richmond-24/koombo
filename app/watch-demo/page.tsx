@@ -57,10 +57,6 @@ export default function BookDemoPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap');
-        
-        .kb-display { font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif; }
-        
         @keyframes kb-slide-up {
           from { opacity: 0; transform: translateY(30px); }
           to   { opacity: 1; transform: translateY(0); }
@@ -110,11 +106,11 @@ export default function BookDemoPage() {
               <span className="h-1.5 w-1.5 rounded-full bg-[#6D28D9] animate-pulse" />
               Live Product Walkthrough
             </span>
-            <h1 className="kb-display text-[clamp(2.5rem, 5vw, 4.5rem)] font-extrabold leading-[1.05] tracking-tight text-[#1F1630]">
+            <h1 className="kb-hero-title text-[#1F1630]">
               Let's build your <br className="hidden md:block"/>
               <span className="text-[#6D28D9]">growth strategy.</span>
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-[#4A3F63]">
+            <p className="kb-body-copy mt-6 text-[#4A3F63]">
               Skip the sales pitch. Get a personalized 30-minute session with our product team to see exactly how Koombo can automate your listings and boost sales.
             </p>
           </div>
@@ -158,7 +154,7 @@ export default function BookDemoPage() {
             <div className="lg:col-span-8 relative">
               {step === 'details' && (
                 <div className="rounded-3xl border border-[#E7DFF5] bg-white p-8 sm:p-10 shadow-[0_20px_60px_-20px_rgba(109,40,217,0.15)] kb-animate">
-                  <h2 className="kb-display text-2xl font-bold text-[#1F1630] mb-2">Tell us about yourself</h2>
+                  <h2 className="kb-section-title mb-2 text-[#1F1630] text-[clamp(1.7rem,2vw,2.3rem)]">Tell us about yourself</h2>
                   <p className="text-[#6A5E85] mb-8">We'll tailor the demo to your specific business goals.</p>
                   
                   <div className="space-y-5">
@@ -208,7 +204,7 @@ export default function BookDemoPage() {
                     Back to details
                   </button>
 
-                  <h2 className="kb-display text-2xl font-bold text-[#1F1630] mb-2">Pick a time that works</h2>
+                  <h2 className="kb-section-title mb-2 text-[#1F1630] text-[clamp(1.7rem,2vw,2.3rem)]">Pick a time that works</h2>
                   <p className="text-[#6A5E85] mb-8">All times are shown in your local timezone.</p>
 
                   {/* Date Selector */}
@@ -265,7 +261,7 @@ export default function BookDemoPage() {
                   <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-[#EDE3FF] text-[#6D28D9] animate-bounce">
                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                   </div>
-                  <h2 className="kb-display text-3xl font-bold text-[#1F1630]">You're all set!</h2>
+                  <h2 className="kb-section-title text-[#1F1630] text-[clamp(1.9rem,2vw,2.5rem)]">You're all set!</h2>
                   <p className="mt-4 max-w-md text-lg text-[#4A3F63]">
                     Thanks for booking a demo with Koombo. A confirmation email with the meeting link has been sent to <span className="font-semibold text-[#6D28D9]">{formData.email}</span>.
                   </p>

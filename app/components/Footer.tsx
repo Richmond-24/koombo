@@ -1,5 +1,7 @@
 'use client';
 
+import CookieSettingsButton from './cookies/CookieSettingsButton';
+
 const SOCIALS = [
   {
     label: 'LinkedIn',
@@ -45,6 +47,12 @@ export default function KoomboFooter() {
     { label: 'Watch demo', href: '/watch-demo' },
   ];
 
+  const legalLinks = [
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+    { label: 'Cookie Policy', href: '/cookie-policy' },
+    { label: 'Terms & Conditions', href: '/terms' },
+  ];
+
   return (
     <footer
       className="w-full bg-[#5B21B6] text-white"
@@ -59,7 +67,8 @@ export default function KoomboFooter() {
               <img 
                 src="/logo1.png" 
                 alt="Koombo" 
-                className="h-14 w-auto sm:h-16 object-contain brightness-0 invert" 
+                className="h-14 w-auto object-contain"
+                style={{ filter: 'brightness(0) invert(1) saturate(0)' }}
               />
             </div>
             <p className="text-base leading-relaxed text-white/75">
@@ -84,7 +93,7 @@ export default function KoomboFooter() {
           </div>
 
           {/* Links */}
-          <div className="grid grid-cols-1 gap-x-16 gap-y-10 sm:grid-cols-2 md:gap-x-20">
+          <div className="grid grid-cols-1 gap-x-16 gap-y-10 sm:grid-cols-3 md:gap-x-20">
             <div>
               <h4 className="mb-4 text-xs font-bold uppercase tracking-wider text-white">Explore</h4>
               <ul className="space-y-3">
@@ -108,6 +117,22 @@ export default function KoomboFooter() {
                     </a>
                   </li>
                 ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="mb-4 text-xs font-bold uppercase tracking-wider text-white">Legal</h4>
+              <ul className="space-y-3">
+                {legalLinks.map((item) => (
+                  <li key={item.label}>
+                    <a href={item.href} className="text-sm text-white/75 transition-colors hover:text-white">
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <CookieSettingsButton className="w-full justify-center text-left" />
+                </li>
               </ul>
             </div>
           </div>

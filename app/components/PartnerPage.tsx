@@ -69,9 +69,8 @@ const cards: { icon: ReactNode; title: string; text: string; art: ReactNode; hre
 
 export default function JoinNetworkSection() {
   return (
-    <section id="partner" className="scroll-mt-24 w-full bg-white px-4 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-12 lg:px-8" style={{ fontFamily: "'Plus Jakarta Sans','DM Sans','Inter',system-ui,sans-serif" }}>
+    <section id="partner" className="scroll-mt-24 w-full bg-white px-4 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-12 lg:px-8">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         @keyframes jn-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
         @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
       `}</style>
@@ -79,7 +78,7 @@ export default function JoinNetworkSection() {
       <div className="mx-auto max-w-[1100px]">
         {/* heading - Reduced size */}
         <Reveal>
-          <h2 className="flex flex-wrap items-center justify-center gap-x-2 text-center text-[32px] font-normal leading-[1.1] tracking-[-0.04em] text-[#CDD2DC] sm:text-[42px] md:text-[52px] lg:text-[60px]">
+          <h2 className="kb-section-title flex flex-wrap items-center justify-center gap-x-2 text-center text-[#1F1630]">
             Join our growing network
             <svg className="h-[.75em] w-[.75em] shrink-0 [animation:jn-bounce_2s_ease-in-out_infinite]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <path d="M12 3v17M5 13l7 7 7-7" />

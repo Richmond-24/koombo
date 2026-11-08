@@ -219,9 +219,9 @@ function HeroImage({ mode = 'shop' }: { mode?: Mode }) {
         }
       `}</style>
 
-      {/* STAGE: tall on phones, cinematic on desktop */}
+      {/* STAGE: shorter on phones, cinematic on desktop */}
       <div
-        className="relative aspect-[4/5] w-full overflow-hidden rounded-[24px] bg-[#2A1250] ring-1 ring-white/20 shadow-[0_30px_80px_-20px_rgba(20,8,50,0.6)] min-[480px]:aspect-[4/4.2] sm:aspect-[16/10] sm:rounded-[32px] lg:aspect-[16/8] lg:rounded-[36px]"
+        className="relative aspect-[4/3.6] w-full overflow-hidden rounded-[22px] bg-[#2A1250] ring-1 ring-white/20 shadow-[0_30px_80px_-20px_rgba(20,8,50,0.6)] min-[480px]:aspect-[4/3.3] sm:aspect-[16/9] sm:rounded-[32px] lg:aspect-[16/8] lg:rounded-[36px]"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onTouchStart={onTouchStart}
@@ -273,10 +273,10 @@ function HeroImage({ mode = 'shop' }: { mode?: Mode }) {
         {current && (
           <div
             key={`${mode}-${current.src}`}
-            className="koombo-card-in absolute bottom-[76px] left-3 right-3 z-30 sm:bottom-6 sm:left-6 sm:right-auto sm:w-[340px]"
+            className="koombo-card-in absolute bottom-[60px] left-3 right-3 z-30 sm:bottom-6 sm:left-6 sm:right-auto sm:w-[340px]"
           >
-            <div className="flex items-center gap-3 rounded-2xl border border-white/50 bg-white/85 p-3 shadow-[0_18px_40px_-12px_rgba(20,8,50,0.5)] backdrop-blur-2xl sm:gap-4 sm:rounded-[22px] sm:p-3.5">
-              <img src={current.src} alt="" draggable={false} className="h-14 w-14 shrink-0 rounded-xl object-cover sm:h-16 sm:w-16" />
+            <div className="flex items-center gap-3 rounded-2xl border border-white/50 bg-white/85 p-2.5 shadow-[0_18px_40px_-12px_rgba(20,8,50,0.5)] backdrop-blur-2xl sm:gap-4 sm:rounded-[22px] sm:p-3.5">
+              <img src={current.src} alt="" draggable={false} className="h-12 w-12 shrink-0 rounded-xl object-cover sm:h-16 sm:w-16" />
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-bold text-[#24133F] sm:text-base">{current.title}</p>
                 <p className="truncate text-xs text-[#5B5670] sm:text-sm">{current.note}</p>
@@ -310,7 +310,7 @@ function HeroImage({ mode = 'shop' }: { mode?: Mode }) {
                   onClick={() => setActive(i)}
                   aria-label={`Show slide ${i + 1}: ${s.title}`}
                   aria-current={i === active}
-                  className={`relative h-11 w-14 overflow-hidden rounded-xl transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:h-12 sm:w-16 ${i === active ? 'ring-2 ring-white' : 'opacity-70 hover:opacity-100'}`}
+                  className={`relative h-10 w-14 overflow-hidden rounded-xl transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:h-12 sm:w-16 ${i === active ? 'ring-2 ring-white' : 'opacity-70 hover:opacity-100'}`}
                 >
                   <img src={s.src} alt="" draggable={false} className="h-full w-full object-cover" />
                   {i === active && (
@@ -372,7 +372,7 @@ export default function KoomboHero({ onSignIn, onSignUp, onSearch, onExplore, on
   const content = CONTENT[mode];
 
   return (
-    <section className="relative min-h-screen w-full overflow-x-clip bg-[#F7F7F5] text-[#101820]" style={{ fontFamily: "'DM Sans', 'Inter', system-ui, sans-serif" }}>
+    <section className="relative min-h-screen w-full overflow-x-clip bg-[#F7F7F5] text-[#101820]">
       <style>{`
         html { scroll-behavior: smooth; scroll-padding-top: 100px; }
         .koombo-nav-link { position: relative; display: inline-flex; align-items: center; gap: 8px; padding: 5px 0; color: #101820; transition: color .25s ease; }
@@ -395,7 +395,7 @@ export default function KoomboHero({ onSignIn, onSignUp, onSearch, onExplore, on
       {mobileMenuOpen && (
         <aside className="koombo-mobile-panel fixed right-0 top-0 z-[70] h-[100dvh] w-[86%] max-w-sm overflow-y-auto border-l border-[#E5E7EB] bg-white text-[#101820] shadow-2xl lg:hidden">
           <div className="flex items-center justify-between border-b border-[#E5E7EB] px-5 py-4">
-            <Link href="/" onClick={() => setMobileMenuOpen(false)} aria-label="Koombo home"><img src="/logo.png" alt="Koombo" className="h-10 w-auto" /></Link>
+            <Link href="/" onClick={() => setMobileMenuOpen(false)} aria-label="Koombo home"><img src="/logo.png" alt="Koombo" className="h-14 w-auto" /></Link>
             <button type="button" onClick={() => setMobileMenuOpen(false)} className="rounded-xl p-2 transition-colors hover:bg-[#F0F5F8]" aria-label="Close menu"><X /></button>
           </div>
           <div className="px-5 py-7">
@@ -415,8 +415,8 @@ export default function KoomboHero({ onSignIn, onSignUp, onSearch, onExplore, on
       )}
 
       {/* HERO BODY */}
-      <main id="home" className="px-2 pb-6 pt-[112px] sm:px-4 sm:pb-10 sm:pt-[126px] lg:pt-[130px]">
-        <section className="mx-auto max-w-[1440px] overflow-hidden rounded-[20px] bg-[#4C1D95] px-2 pb-2 pt-9 sm:rounded-[28px] sm:px-8 sm:pb-8 sm:pt-12 lg:px-12 lg:pb-10 lg:pt-14">
+      <main id="home" className="px-2 pb-4 pt-[104px] sm:px-4 sm:pb-8 sm:pt-[118px] lg:pt-[122px]">
+        <section className="mx-auto max-w-[1440px] overflow-hidden rounded-[20px] bg-[#4C1D95] px-2 pb-1 pt-5 sm:rounded-[28px] sm:px-8 sm:pb-7 sm:pt-10 lg:px-12 lg:pb-8 lg:pt-12">
 
           {/* Shop / Sell toggle */}
           <Reveal>
@@ -424,7 +424,7 @@ export default function KoomboHero({ onSignIn, onSignUp, onSearch, onExplore, on
               {(['shop', 'sell'] as const).map((item) => {
                 const Icon = item === 'shop' ? Bag : Store;
                 return (
-                  <button key={item} type="button" onClick={() => setMode(item)} aria-pressed={mode === item} className={`inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold capitalize transition-all duration-200 sm:px-7 sm:py-2.5 sm:text-base ${mode === item ? 'bg-white text-[#24133F] shadow-sm' : 'text-white hover:bg-white/10'}`}>
+                  <button key={item} type="button" onClick={() => setMode(item)} aria-pressed={mode === item} className={`inline-flex items-center gap-2 rounded-full px-5 py-1.5 text-sm font-semibold capitalize transition-all duration-200 sm:px-7 sm:py-2.5 sm:text-base ${mode === item ? 'bg-white text-[#24133F] shadow-sm' : 'text-white hover:bg-white/10'}`}>
                     <Icon size={18} /> {item}
                   </button>
                 );
@@ -433,19 +433,19 @@ export default function KoomboHero({ onSignIn, onSignUp, onSearch, onExplore, on
           </Reveal>
 
           {/* Headline */}
-          <Reveal delay={100}>
-            <h1 className="mx-auto mt-6 max-w-4xl px-2 text-center text-[clamp(2.25rem,5.5vw,4.5rem)] font-extrabold leading-[1.04] tracking-[-0.055em] text-white sm:mt-7 sm:px-0">{content.title}</h1>
+          <Reveal delay={100} className="flex justify-center">
+            <h1 className="kb-hero-title mt-4 w-full max-w-4xl px-2 text-center text-white sm:mt-7 sm:px-0">{content.title}</h1>
           </Reveal>
 
           {/* Description */}
           <Reveal delay={180}>
-            <p className="mx-auto mt-4 max-w-[620px] px-2 text-center text-sm leading-relaxed text-[#D1D5DB] sm:mt-5 sm:px-0 sm:text-base lg:text-lg">{content.sub}</p>
+            <p className="kb-body-copy mx-auto mt-3 max-w-[620px] px-2 text-center text-[#D1D5DB] sm:mt-5 sm:px-0">{content.sub}</p>
           </Reveal>
 
           {/* CTA */}
           <Reveal delay={260}>
-            <div className="mt-6 flex justify-center sm:mt-7">
-              <a href={mode === 'sell' ? '/lister' : '#vendors'} onClick={() => { if (mode === 'shop') onExplore?.(); }} className="koombo-cta group inline-flex items-center justify-center gap-3 rounded-full bg-[#24133F] px-7 py-3.5 text-sm font-bold text-white hover:bg-[#3B1C66] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#24133F] sm:px-9 sm:py-4 sm:text-base">
+            <div className="mt-4 flex justify-center sm:mt-7">
+              <a href={mode === 'sell' ? '/lister' : '#vendors'} onClick={() => { if (mode === 'shop') onExplore?.(); }} className="koombo-cta group inline-flex items-center justify-center gap-3 rounded-full bg-[#24133F] px-6 py-3 text-sm font-bold text-white hover:bg-[#3B1C66] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#24133F] sm:px-9 sm:py-4 sm:text-base">
                 <content.CtaIcon size={21} /> {content.cta}
                 <span className="transition-transform duration-200 group-hover:translate-x-1"><Arrow size={20} /></span>
               </a>
@@ -454,14 +454,14 @@ export default function KoomboHero({ onSignIn, onSignUp, onSearch, onExplore, on
 
           {/* Main image: full width on phones */}
           <Reveal delay={350} y={25}>
-            <div className="mt-8 sm:mt-10 lg:mt-12">
+            <div className="mt-4 sm:mt-8 lg:mt-10">
               <HeroImage mode={mode} />
             </div>
           </Reveal>
 
           {/* Supporting text */}
           <Reveal delay={450}>
-            <p className="px-2 py-4 text-center text-xs font-medium tracking-wide text-[#D1D5DB]/80 sm:py-0 sm:pt-6 sm:text-sm">
+            <p className="px-2 py-3 text-center text-xs font-medium tracking-wide text-[#D1D5DB]/80 sm:py-0 sm:pt-6 sm:text-sm">
               {mode === 'shop' ? 'Discover businesses. Connect with people. Shop with confidence.' : 'Your business. Your audience. Your opportunity.'}
             </p>
           </Reveal>

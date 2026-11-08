@@ -82,10 +82,7 @@ export default function ContactPage() {
     'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6D28D9]';
 
   return (
-    <main
-      className="min-h-screen overflow-hidden bg-[#F8F8F6] text-[#1D1B20]"
-      style={{ fontFamily: "'DM Sans', 'Inter', system-ui, sans-serif" }}
-    >
+    <main className="min-h-screen overflow-hidden bg-[#F8F8F6] text-[#1D1B20]">
       <style>{`
         @keyframes koombo-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
         @keyframes koombo-ping { 75%, 100% { transform: scale(2.4); opacity: 0; } }
@@ -117,13 +114,13 @@ export default function ContactPage() {
           {/* Intro */}
           <div className="koombo-rise flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <h1 className="text-[clamp(3.5rem,10vw,7.5rem)] font-black leading-[0.9] tracking-[-0.06em] text-[#2E1065]">
+              <h1 className="kb-hero-title text-[#2E1065]">
                 <span className="relative inline-block">
                   Let’s talk.
                   <Cursor name="You" color="#10B981" className="-bottom-5 right-0 hidden sm:block lg:-right-6" />
                 </span>
               </h1>
-              <p className="mt-6 max-w-md text-lg leading-8 text-[#5F5B66]">
+              <p className="kb-body-copy mt-6 max-w-md text-[#5F5B66]">
                 Want to sell, partner with us or get help? Reach out directly and the right person will pick it up.
               </p>
             </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { useCookieConsent } from './cookies/CookieConsentProvider';
 
 declare global {
   interface Window {
@@ -15,8 +16,37 @@ declare global {
 const INJECT_SCRIPT_URL = 'https://cdn.botpress.cloud/webchat/v5.0/inject.js';
 const LOKI_CONFIG_URL = 'https://files.bpcontent.cloud/2026/11/01/19/20261101191430-VXCD3170.js';
 
+function removeBotpressWidget() {
+  const selectors = [
+    '.bpw-widget-container',
+    '.bpw-layout',
+    '.bpw-chat-container',
+    '.bpw-conversation-container',
+    '.bpw-chat-history',
+    '[data-bp-widget]',
+    '.bp-widget',
+    '.bp-webchat',
+    '[id*="botpress"]',
+    '#bp-webchat',
+    '.bpw-widget-btn',
+    '.bpw-widget-button',
+    '.bpw-floating-button',
+  ];
+
+  selectors.forEach((selector) => {
+    document.querySelectorAll(selector).forEach((node) => node.remove());
+  });
+}
+
 export default function LokiChatButton() {
+  const { consent, isReady } = useCookieConsent();
+
   useEffect(() => {
+    if (!isReady || !consent || !consent.categories.functional) {
+      removeBotpressWidget();
+      return;
+    }
+
     const patchBotText = () => {
       const widgetRoot = document.querySelector(
         '.bpw-layout, .bpw-widget-container, .bpw-chat-container, .bpw-conversation-container'
@@ -40,7 +70,27 @@ export default function LokiChatButton() {
       }
     };
 
+    const injectBotpress = () => {
+      const injectScript = document.querySelector(`script[src="${INJECT_SCRIPT_URL}"]`);
+      const configScript = document.querySelector(`script[src="${LOKI_CONFIG_URL}"]`);
+
+      if (!injectScript) {
+        const injectNode = document.createElement('script');
+        injectNode.src = INJECT_SCRIPT_URL;
+        injectNode.defer = true;
+        document.body.appendChild(injectNode);
+      }
+
+      if (!configScript) {
+        const configNode = document.createElement('script');
+        configNode.src = LOKI_CONFIG_URL;
+        configNode.defer = true;
+        document.body.appendChild(configNode);
+      }
+    };
+
     patchBotText();
+    injectBotpress();
 
     const observer = new MutationObserver(() => {
       patchBotText();
@@ -53,7 +103,9 @@ export default function LokiChatButton() {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [consent, isReady]);
+
+  if (!isReady || !consent || !consent.categories.functional) return null;
 
   return (
     <>
@@ -167,9 +219,6 @@ export default function LokiChatButton() {
           }
         }
       `}</style>
-
-      <script src={INJECT_SCRIPT_URL} defer />
-      <script src={LOKI_CONFIG_URL} defer />
     </>
   );
 }

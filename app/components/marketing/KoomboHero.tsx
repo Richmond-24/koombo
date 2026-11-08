@@ -316,8 +316,8 @@ export default function KoomboHero({ onSignIn, onSignUp, onSearch, onExplore, on
           </Reveal>
 
           {/* Headline */}
-          <Reveal delay={100}>
-            <h1 className="mx-auto mt-6 max-w-4xl text-center text-[clamp(2.25rem,5.5vw,4.5rem)] font-extrabold leading-[1.04] tracking-[-0.055em] text-white sm:mt-7">{content.title}</h1>
+          <Reveal delay={100} className="flex justify-center">
+            <h1 className="mt-6 w-full max-w-4xl text-center text-[clamp(2.25rem,5.5vw,4.5rem)] font-extrabold leading-[1.04] tracking-[-0.055em] text-white sm:mt-7">{content.title}</h1>
           </Reveal>
 
           {/* Description */}
