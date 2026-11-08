@@ -300,7 +300,7 @@ function PhoneBody() {
 function HeroVisual({
   phoneRef,
 }: {
-  phoneRef: React.RefObject<HTMLDivElement | null>;
+  phoneRef: React.RefObject<HTMLDivElement>;
 }) {
   return (
     <div
