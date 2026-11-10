@@ -21,9 +21,9 @@ const API_BASE_URL = (
 
 const MARKETPLACE_HREF = process.env.NEXT_PUBLIC_WEBAPP_URL || "https://koombo.app";
 
-/* The listing assistant is now called Loki AI. The route is kept as-is so existing links keep working;
+/* The listing assistant is now called Shuri AI. The route is kept as-is so existing links keep working;
    change this one constant if you rename the route folder. */
-const LOKI_LISTING_PATH = "/riri-ai";
+const SHURI_LISTING_PATH = "/riri-ai";
 
 /* ───────────── Icon paths ───────────── */
 const I = {
@@ -527,7 +527,7 @@ export default function SellerDashboardPage() {
   };
 
   const goToAiListing = () => {
-    window.location.assign(`${LOKI_LISTING_PATH}?sellerId=${encodeURIComponent(sellerId)}`);
+    window.location.assign(`${SHURI_LISTING_PATH}?sellerId=${encodeURIComponent(sellerId)}`);
   };
 
   const toggleEdit = (id: string) => {
@@ -691,7 +691,7 @@ export default function SellerDashboardPage() {
   ];
 
   const surface = "rounded-[28px] bg-white ring-1 ring-[#E9E6F1]";
-  const lokiButton =
+  const shuriButton =
     "k-press inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-[#2B2C30] px-5 text-[15px] font-bold text-white hover:bg-[#3A3B41]";
   const recent = products.slice(0, 4);
 
@@ -701,10 +701,10 @@ export default function SellerDashboardPage() {
         <Icon d={I.box} />
       </div>
       <p className="mt-3 text-sm font-bold text-slate-800">No products yet</p>
-      <p className="mx-auto mt-1 max-w-xs text-sm text-slate-500">List your first product easier and faster with Loki AI, then track its approval here.</p>
-      <button type="button" onClick={goToAiListing} className={`${lokiButton} mt-4 h-11`}>
+      <p className="mx-auto mt-1 max-w-xs text-sm text-slate-500">List your first product easier and faster with Shuri AI, then track its approval here.</p>
+      <button type="button" onClick={goToAiListing} className={`${shuriButton} mt-4 h-11`}>
         <Icon d={I.spark} size={16} />
-        List with Loki AI
+        List with Shuri AI
       </button>
     </div>
   );
@@ -858,7 +858,7 @@ export default function SellerDashboardPage() {
           {/* ═════ OVERVIEW ═════ */}
           {activeTab === "overview" && (
             <>
-              <section className="relative overflow-hidden rounded-[28px] bg-[#ECE6FF] p-5 sm:p-8" aria-label="List with Loki AI">
+              <section className="relative overflow-hidden rounded-[28px] bg-[#ECE6FF] p-5 sm:p-8" aria-label="List with Shuri AI">
                 <div aria-hidden className="k-drift pointer-events-none absolute -right-10 -top-16 h-48 w-48 rounded-full bg-[#D9CCFF]" />
                 <div className="relative flex items-center gap-6">
                   <div className="min-w-0 flex-1">
@@ -866,17 +866,17 @@ export default function SellerDashboardPage() {
                       <Icon d={I.spark} size={22} />
                     </span>
                     <h2 className="mt-3 max-w-md text-xl font-extrabold leading-snug tracking-tight sm:text-3xl">
-                      List your products easier and faster with Loki AI
+                      List your products easier and faster with Shuri AI
                     </h2>
                     <p className="mt-2 max-w-md text-sm leading-relaxed text-[#4A4360] sm:text-base">
                       Add photos and a short note. Review your listing, then publish.
                     </p>
-                    <button type="button" onClick={goToAiListing} className={`${lokiButton} mt-4 w-full sm:w-auto`}>
+                    <button type="button" onClick={goToAiListing} className={`${shuriButton} mt-4 w-full sm:w-auto`}>
                       <Icon d={I.spark} size={18} />
-                      List with Loki AI
+                      List with Shuri AI
                     </button>
                   </div>
-                  <LokiPreview />
+                  <ShuriPreview />
                 </div>
               </section>
 
@@ -980,8 +980,8 @@ export default function SellerDashboardPage() {
                 <span className="k-orb grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white text-[#6B3DF5]">
                   <Icon d={I.spark} size={20} />
                 </span>
-                <p className="min-w-0 flex-1 text-sm font-semibold leading-snug text-[#3B3354]">List more products easier and faster with Loki AI.</p>
-                <button type="button" onClick={goToAiListing} className={`${lokiButton} h-10 shrink-0 px-4 text-sm`}>
+                <p className="min-w-0 flex-1 text-sm font-semibold leading-snug text-[#3B3354]">List more products easier and faster with Shuri AI.</p>
+                <button type="button" onClick={goToAiListing} className={`${shuriButton} h-10 shrink-0 px-4 text-sm`}>
                   List now
                 </button>
               </section>
@@ -1245,7 +1245,7 @@ export default function SellerDashboardPage() {
         statusDot={dotStyle}
         telegramLabel={telegramLabel}
         telegramConnected={telegramConnection.connected}
-        lokiButton={lokiButton}
+        shuriButton={shuriButton}
         onList={() => {
           setMenuOpen(false);
           goToAiListing();
@@ -1290,8 +1290,8 @@ export default function SellerDashboardPage() {
   );
 }
 
-/* ───────────── Loki AI preview (a listing that fills itself in) ───────────── */
-function LokiPreview() {
+/* ───────────── Shuri AI preview (a listing that fills itself in) ───────────── */
+function ShuriPreview() {
   return (
     <div aria-hidden className="k-float-soft hidden w-[200px] shrink-0 sm:block lg:w-[230px]">
       <div className="rounded-3xl bg-white p-3 shadow-[0_22px_44px_-20px_rgba(43,44,48,.4)]">
@@ -1326,7 +1326,7 @@ function MobileDrawer({
   statusDot,
   telegramLabel,
   telegramConnected,
-  lokiButton,
+  shuriButton,
   onList,
   onAdd,
 }: {
@@ -1343,7 +1343,7 @@ function MobileDrawer({
   statusDot: string;
   telegramLabel: string;
   telegramConnected: boolean;
-  lokiButton: string;
+  shuriButton: string;
   onList: () => void;
   onAdd: () => void;
 }) {
@@ -1489,12 +1489,12 @@ function MobileDrawer({
           </div>
 
           <p className="k-drawer-item px-1 text-xs leading-relaxed text-slate-500" style={stagger(6)}>
-            List your products easier and faster with Loki AI.
+            List your products easier and faster with Shuri AI.
           </p>
 
-          <button type="button" onClick={onList} style={stagger(7)} className={`${lokiButton} k-drawer-item w-full`}>
+          <button type="button" onClick={onList} style={stagger(7)} className={`${shuriButton} k-drawer-item w-full`}>
             <Icon d={I.spark} size={18} />
-            List with Loki AI
+            List with Shuri AI
           </button>
 
           <button
@@ -1648,7 +1648,7 @@ function Row({ icon, label, value }: { icon: string; label: string; value: strin
    One spring easing is used everywhere so the page moves like a single
    Figma prototype. Smart-animate moments: the hamburger morphs into an X,
    the nav highlight glides between items, the page steps back behind the
-   drawer, and the Loki AI preview fills itself in. The page-load entrance
+   drawer, and the Shuri AI preview fills itself in. The page-load entrance
    plays once; after that, motion only answers what the person does. */
 const CSS = `
 @font-face {

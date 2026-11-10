@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import SiteHeader from '../components/SiteHeader';
 import KoomboFooter from '../components/Footer';
+import RiderSceen from '../components/RiderSceen';
 
 /* -------------------------------------------------------------------------- */
 /* ICONS                                                                      */
@@ -180,15 +181,13 @@ export default function SellerGateway() {
           {/* CONTENT CONTAINER */}
           <div className="relative z-10 flex max-w-xl flex-col items-center text-center px-8">
             
-            {/* Headline with text shadow for visibility over any image area */}
             <h2 className="font-lufga text-4xl font-black uppercase leading-[1.1] tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] sm:text-5xl xl:text-6xl animate-fade-up delay-100">
               List Smarter.<br />Sell Faster.
             </h2>
             
-            {/* Subtitle in a semi-transparent pill for guaranteed readability */}
             <div className="mx-auto mt-6 max-w-lg rounded-2xl bg-black/40 backdrop-blur-md px-6 py-4 border border-white/10 animate-fade-up delay-200">
               <p className="text-base font-medium leading-relaxed text-white sm:text-lg">
-                Use <span className="font-bold text-[#b794f6]">Loki AI</span> to create perfect product listings in seconds. Get instant order notifications directly on Telegram—no extra apps needed.
+                Use <span className="font-bold text-[#b794f6]">Shuri AI</span> to create perfect product listings in seconds. Get instant order notifications directly on Telegram—no extra apps needed.
               </p>
             </div>
 
@@ -198,7 +197,6 @@ export default function SellerGateway() {
               {/* Center Glowing Orb / Brand Anchor (Purple Logo) */}
               <div className="absolute left-1/2 top-1/2 z-0 animate-float-center">
                 <div className="relative flex h-28 w-28 items-center justify-center rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_0_60px_-10px_rgba(107,33,168,0.5)]">
-                  {/* PURPLE LOGO: Removed brightness-0 invert so original purple shows through */}
                   <Image 
                     src="/logo.png" 
                     alt="Koombo" 
@@ -206,19 +204,18 @@ export default function SellerGateway() {
                     height={96} 
                     className="h-14 w-14 object-contain opacity-95"
                   />
-                  {/* Pulse Ring */}
                   <div className="absolute inset-0 rounded-3xl border border-[#6B21A8]/40 animate-ping opacity-30" />
                 </div>
               </div>
 
-              {/* Floating Card 1: Loki AI Real-time Listing (Top Right) */}
+              {/* Floating Card 1: Shuri AI Real-time Listing (Top Right) */}
               <div className="absolute right-0 top-0 z-10 animate-float-card" style={{ animationDelay: '0.5s' }}>
                 <div className="group flex items-center gap-3 rounded-2xl bg-white/90 backdrop-blur-md px-5 py-4 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] border border-white/40 hover:scale-105 transition-transform duration-300 cursor-default">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#6B21A8] text-white shadow-lg shadow-[#6B21A8]/30">
                     <SparklesIcon className="h-5 w-5" />
                   </div>
                   <div className="text-left">
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#6B21A8]">Loki AI</p>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#6B21A8]">Shuri AI</p>
                     <p className="text-sm font-extrabold text-[#1a1a1a]">Real-time Listing</p>
                   </div>
                   <ArrowUpRightIcon className="h-4 w-4 text-[#888] group-hover:text-[#6B21A8] transition-colors" />
@@ -250,13 +247,16 @@ export default function SellerGateway() {
             {/* BOTTOM INFO */}
             <div className="mt-8 flex items-center justify-center gap-2 rounded-full bg-black/40 backdrop-blur-md px-5 py-2.5 border border-white/10 animate-fade-up delay-400">
               <span className="inline-block h-2 w-2 rounded-full bg-[#0088cc] shadow-[0_0_8px_rgba(0,136,204,0.6)]"></span>
-              <span className="text-sm font-medium text-white">Powered by Loki AI • Telegram Integration</span>
+              <span className="text-sm font-medium text-white">Powered by Shuri AI • Telegram Integration</span>
             </div>
 
           </div>
         </div>
 
       </main>
+
+      {/* RIDER SCENE: delivery rider, trees and road strip at the bottom of the page */}
+      <RiderSceen />
 
       <KoomboFooter />
     </div>

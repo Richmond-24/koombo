@@ -24,7 +24,7 @@ export const CONSENT_RETENTION_DAYS = 365;
 
 export const DEFAULT_CATEGORIES: CookieConsentState = {
   necessary: true,
-  functional: false,
+  functional: true,
   analytics: false,
   marketing: false,
 };

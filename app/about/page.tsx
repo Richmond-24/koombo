@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
@@ -37,6 +36,7 @@ const body = Inter({
 /* Pale purple:  #F5F3FF                                                     */
 /* Hover purple: #8B5CF6                                                     */
 /* Body text:    #45415A                                                     */
+/* Teal blue (Shuri section): #0B4F63 / lines #2FB8CC                        */
 /* -------------------------------------------------------------------------- */
 
 const headingStyle = {
@@ -117,6 +117,47 @@ function Reveal({
 }
 
 /* -------------------------------------------------------------------------- */
+/* TEAL BLUE BOX PATTERN (Shuri section background)                           */
+/*                                                                            */
+/* - skewX(-14): upright edges lean with the top to the right                 */
+/* - skewY(22):  horizontal edges slope gently down to the right              */
+/* - bricks are staggered, so upright edges alternate between rows            */
+/* -------------------------------------------------------------------------- */
+
+function TealBoxPattern() {
+  return (
+    <svg
+      aria-hidden
+      className="absolute inset-0 -z-10 h-full w-full"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <pattern
+          id="shuri-boxes"
+          width="100"
+          height="230"
+          patternUnits="userSpaceOnUse"
+          patternTransform="skewY(22) skewX(-14)"
+        >
+          <path
+            d="M0 1 H100 M0 116 H100 M1 1 V116 M51 116 V231"
+            fill="none"
+          />
+        </pattern>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#0B4F63" />
+      <rect
+        width="100%"
+        height="100%"
+        fill="url(#shuri-boxes)"
+        style={{ stroke: '#2FB8CC', strokeOpacity: 0.5, strokeWidth: 1.1 }}
+      />
+    </svg>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
 /* CONTENT                                                                     */
 /* -------------------------------------------------------------------------- */
 
@@ -139,9 +180,6 @@ const steps = [
   },
 ];
 
-const LOKI_SECTION_IMAGE =
-  'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=80';
-
 const fixes = [
   {
     icon: Video,
@@ -149,22 +187,22 @@ const fixes = [
     description:
       'See products in action through live and short videos, so you know what you are buying before you pay.',
     card: 'bg-[#6D28D9] text-white',
-    iconBox: 'bg-white text-[#2E1065]',
+    iconBox: 'bg-white text-black',
   },
   {
     icon: Store,
     title: 'Listing made easy',
     description:
       'Put your products online in minutes and start reaching buyers, without the hassle.',
-    card: 'bg-white text-[#2E1065]',
-    iconBox: 'bg-[#EDE9FE] text-[#6D28D9]',
+    card: 'bg-white text-black',
+    iconBox: 'bg-[#EDE9FE] text-black',
   },
   {
     icon: ShieldCheck,
     title: 'Fraud stopped early',
     description:
-      'Loki, our custom AI, watches for fake listings and suspicious activity to keep buyers and sellers safe.',
-    card: 'bg-[#EDE9FE] text-[#2E1065]',
+      'Shuri, our custom AI, watches for fake listings and suspicious activity to keep buyers and sellers safe.',
+    card: 'bg-[#EDE9FE] text-black',
     iconBox: 'bg-[#2E1065] text-white',
   },
 ];
@@ -250,12 +288,12 @@ function DiscoverScreen() {
             alt="Kicks by Ama seller profile"
             className="h-6 w-6 rounded-full object-cover"
           />
-          <span className="text-xs font-bold text-[#2E1065]">
+          <span className="text-xs font-bold text-black">
             Kicks by Ama
           </span>
         </div>
 
-        <Heart size={14} className="text-[#6D28D9]" />
+        <Heart size={14} className="text-black" />
       </div>
     </div>
   );
@@ -264,15 +302,15 @@ function DiscoverScreen() {
 function ConnectScreen() {
   return (
     <div className="flex h-full flex-col justify-end gap-2 text-[11px] font-semibold leading-snug">
-      <p className="max-w-[80%] self-start rounded-2xl rounded-bl-sm bg-white px-3 py-2 text-[#2E1065]">
+      <p className="max-w-[80%] self-start rounded-2xl rounded-bl-sm bg-white px-3 py-2 text-black">
         Is the size 43 still available?
       </p>
 
-      <p className="max-w-[80%] self-end rounded-2xl rounded-br-sm bg-[#EDE9FE] px-3 py-2 text-[#2E1065]">
+      <p className="max-w-[80%] self-end rounded-2xl rounded-br-sm bg-[#EDE9FE] px-3 py-2 text-black">
         Yes! I can have it ready today.
       </p>
 
-      <p className="max-w-[80%] self-start rounded-2xl rounded-bl-sm bg-white px-3 py-2 text-[#2E1065]">
+      <p className="max-w-[80%] self-start rounded-2xl rounded-bl-sm bg-white px-3 py-2 text-black">
         Perfect, ordering now!
       </p>
     </div>
@@ -290,18 +328,18 @@ function BuyScreen() {
         />
 
         <div className="min-w-0">
-          <p className="truncate text-xs font-bold text-[#2E1065]">
+          <p className="truncate text-xs font-bold text-black">
             Air runner sneakers
           </p>
           <p className="text-xs text-[#45415A]">Size 43</p>
-          <p className="text-sm font-black text-[#6D28D9]">GH₵ 850</p>
+          <p className="text-sm font-black text-black">GH₵ 850</p>
         </div>
       </div>
 
       <div className="space-y-2">
         <div className="flex justify-between text-xs text-[#45415A]">
           <span>Total</span>
-          <span className="font-bold text-[#2E1065]">GH₵ 850</span>
+          <span className="font-bold text-black">GH₵ 850</span>
         </div>
 
         <div className="rounded-full bg-[#6D28D9] py-2.5 text-center text-xs font-bold text-white">
@@ -317,12 +355,12 @@ function EarnScreen() {
     <div className="flex h-full flex-col justify-between">
       <div className="rounded-xl bg-white p-3">
         <div className="flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-[#EDE9FE] text-[#6D28D9]">
+          <span className="grid h-9 w-9 place-items-center rounded-full bg-[#EDE9FE] text-black">
             <Handshake size={17} />
           </span>
 
           <div>
-            <p className="text-xs font-bold text-[#2E1065]">
+            <p className="text-xs font-bold text-black">
               Successful connection
             </p>
             <p className="text-[10px] text-[#45415A]">
@@ -441,7 +479,7 @@ export default function AboutPage() {
   return (
     <main
       ref={rootRef}
-      className={`${body.className} min-h-screen overflow-x-clip bg-white text-[#2E1065]`}
+      className={`${body.className} min-h-screen overflow-x-clip bg-white text-black`}
     >
       <style>{`
         @keyframes k-rise {
@@ -510,7 +548,7 @@ export default function AboutPage() {
             }}
           >
             <h1
-              className="w-full text-left text-[#2E1065]"
+              className="w-full text-left text-black"
               style={{
                 fontFamily:
                   '"Lufga", "Inter", "Segoe UI", Roboto, Arial, sans-serif',
@@ -647,49 +685,93 @@ export default function AboutPage() {
       {/* ================= MISSION & VISION ================= */}
       <section id="our-story" className="scroll-mt-20 bg-white pb-16 sm:pb-24">
         <div className="mx-auto grid max-w-7xl gap-5 px-5 sm:px-8 lg:grid-cols-2 lg:px-12">
+          {/* MISSION */}
           <Reveal x={-40} y={0} as="article">
-            <div className="flex h-full min-h-[19rem] flex-col justify-between rounded-[1.8rem] bg-[#2E1065] p-6 sm:min-h-[20rem] sm:p-8">
-              <p className="text-2xl font-extrabold leading-[1.25] text-white sm:text-3xl">
-                To make buying, selling and earning more accessible by
-                connecting people, businesses and opportunities.
+            <div className="flex h-full min-h-[26rem] flex-col rounded-[2rem] border-2 border-black bg-[#2E1065] p-7 text-white sm:min-h-[30rem] sm:p-10">
+              {/* semicircle accent */}
+              <span
+                aria-hidden
+                className="block h-[26px] w-[52px] rounded-t-full bg-[#8B5CF6] sm:h-[30px] sm:w-[60px]"
+              />
+
+              <h2
+                className={`${h} -mt-1 text-white`}
+                style={{
+                  ...headingStyle,
+                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                }}
+              >
+                Our mission
+              </h2>
+
+              <p className="mt-6 max-w-xl text-xl font-medium leading-[1.5] text-white/90 sm:text-2xl sm:leading-[1.5]">
+                To transform how Africa discovers, connects, buys and sells by
+                building an intelligent, AI-powered social commerce ecosystem
+                that brings people, businesses, creators and opportunities
+                together. We are making commerce more accessible, social and
+                rewarding by empowering businesses to reach customers, enabling
+                creators and connectors to earn through meaningful influence,
+                and using intelligent AI agents to simplify discovery, facilitate
+                connections and make buying and selling seamless. Our mission is
+                to give every African business the tools, visibility and
+                intelligent support to grow beyond traditional boundaries.
               </p>
 
-              <span className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-[#6D28D9] px-4 py-2.5 text-sm font-bold text-white">
-                <Target size={16} />
-                Our mission
-              </span>
+              <div className="mt-auto flex items-center gap-2.5 pt-10 text-lg font-extrabold text-white sm:text-xl">
+                <Target size={22} />
+                Building Africa's commerce future
+                <ArrowRight size={20} />
+              </div>
             </div>
           </Reveal>
 
+          {/* VISION */}
           <Reveal x={40} y={0} delay={150} as="article">
-            <div className="flex h-full min-h-[19rem] flex-col justify-between rounded-[1.8rem] bg-[#EDE9FE] p-6 sm:min-h-[20rem] sm:p-8">
-              <p className="text-2xl font-extrabold leading-[1.25] text-[#2E1065] sm:text-3xl">
-                A world where everyone can take part in commerce and earn from
-                the value they create.
+            <div className="flex h-full min-h-[26rem] flex-col rounded-[2rem] border-2 border-black bg-[#EDE9FE] p-7 text-black sm:min-h-[30rem] sm:p-10">
+              {/* semicircle accent */}
+              <span
+                aria-hidden
+                className="block h-[26px] w-[52px] rounded-t-full bg-[#6D28D9] sm:h-[30px] sm:w-[60px]"
+              />
+
+              <h2
+                className={`${h} -mt-1 text-black`}
+                style={{
+                  ...headingStyle,
+                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                }}
+              >
+                Our vision
+              </h2>
+
+              <p className="mt-6 max-w-xl text-xl font-medium leading-[1.5] text-[#45415A] sm:text-2xl sm:leading-[1.5]">
+                To become Africa's leading agentic social commerce ecosystem,
+                transforming the continent into a connected digital marketplace
+                where intelligent AI agents, people and businesses work together
+                to make commerce effortless. We envision a future where anyone
+                can discover what they need, businesses can find their ideal
+                customers, creators can turn influence into income, and
+                intelligent agents can proactively connect opportunities,
+                understand intentions and help complete commerce journeys. A
+                future where geographical barriers no longer limit opportunity,
+                every connection creates value, and every African has the
+                opportunity to participate in and benefit from the digital
+                economy.
               </p>
 
-              <span className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-[#2E1065] px-4 py-2.5 text-sm font-bold text-white">
-                <Eye size={16} />
-                Our vision
-              </span>
+              <div className="mt-auto flex items-center gap-2.5 pt-10 text-lg font-extrabold text-black sm:text-xl">
+                <Eye size={22} />
+                The future of African commerce
+                <ArrowRight size={20} />
+              </div>
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* ================= FIXING HOW THE WORLD SHOPS ================= */}
-      <section className="relative isolate overflow-hidden bg-[#2E1065] py-20 text-white sm:py-28">
-        <img
-          src={LOKI_SECTION_IMAGE}
-          alt=""
-          aria-hidden
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
-        />
-
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 bg-[#2E1065]/90"
-        />
+      <section className="relative isolate overflow-hidden bg-[#0B4F63] py-20 text-white sm:py-28">
+        <TealBoxPattern />
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
@@ -697,7 +779,7 @@ export default function AboutPage() {
               <Reveal>
                 <span className="inline-flex items-center gap-2 rounded-full bg-[#6D28D9] px-4 py-2.5 text-sm font-bold text-white">
                   <Sparkles size={16} />
-                  Powered by Loki, our custom AI
+                  Powered by Shuri, our custom AI
                 </span>
               </Reveal>
 
@@ -722,13 +804,13 @@ export default function AboutPage() {
             </div>
 
             <Reveal x={48} y={0} delay={300}>
-              <div className="flex max-w-[300px] items-start gap-3 rounded-2xl bg-white p-4 text-[#2E1065]">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#EDE9FE] text-[#6D28D9]">
+              <div className="flex max-w-[300px] items-start gap-3 rounded-2xl bg-white p-4 text-black">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#EDE9FE] text-black">
                   <ShieldCheck size={21} />
                 </span>
 
                 <div>
-                  <p className="text-sm font-extrabold">Checked by Loki</p>
+                  <p className="text-sm font-extrabold">Checked by Shuri</p>
                   <p className="mt-1 text-xs font-medium leading-5 text-[#45415A]">
                     Listing verified. No fraud signals found.
                   </p>
@@ -777,7 +859,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
           <Reveal>
             <h2
-              className={`${h} max-w-3xl text-[#2E1065]`}
+              className={`${h} max-w-3xl text-black`}
               style={{
                 ...headingStyle,
                 fontSize: 'clamp(2rem, 4.5vw, 3.75rem)',
@@ -821,7 +903,7 @@ export default function AboutPage() {
                   </div>
 
                   <h3
-                    className={`${h} mt-7 text-xl text-[#2E1065] sm:text-2xl`}
+                    className={`${h} mt-7 text-xl text-black sm:text-2xl`}
                     style={headingStyle}
                   >
                     {step.title}
@@ -843,7 +925,7 @@ export default function AboutPage() {
           <div>
             <Reveal>
               <h2
-                className={`${h} text-[#2E1065]`}
+                className={`${h} text-black`}
                 style={{
                   ...headingStyle,
                   fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
@@ -894,7 +976,7 @@ export default function AboutPage() {
                       className={`inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold transition ${focus} ${
                         selected
                           ? 'bg-[#2E1065] text-white'
-                          : 'bg-white text-[#2E1065] hover:bg-[#EDE9FE]'
+                          : 'bg-white text-black hover:bg-[#EDE9FE]'
                       }`}
                     >
                       <Icon size={16} />
@@ -913,7 +995,7 @@ export default function AboutPage() {
               className={`k-fade flex min-h-[24rem] flex-col justify-between rounded-[1.8rem] p-6 sm:min-h-[26rem] sm:p-8 ${
                 darkCard
                   ? 'bg-[#2E1065] text-white'
-                  : 'bg-[#EDE9FE] text-[#2E1065]'
+                  : 'bg-[#EDE9FE] text-black'
               }`}
             >
               <div>
@@ -988,7 +1070,7 @@ export default function AboutPage() {
 
                   <Link
                     href="/lister/connectors"
-                    className={`inline-flex items-center justify-center gap-2 rounded-full border-2 border-white px-6 py-3 text-sm font-bold text-white transition duration-200 hover:bg-white hover:text-[#2E1065] sm:px-7 sm:py-3.5 sm:text-base ${focus}`}
+                    className={`inline-flex items-center justify-center gap-2 rounded-full border-2 border-white px-6 py-3 text-sm font-bold text-white transition duration-200 hover:bg-white hover:text-black sm:px-7 sm:py-3.5 sm:text-base ${focus}`}
                   >
                     Join the community
                     <Users size={18} />

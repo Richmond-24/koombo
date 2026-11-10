@@ -68,10 +68,9 @@ export default function CookiePolicyPage() {
             <section>
               <h2 className="text-2xl font-bold tracking-[-0.04em] text-[#101820]">7. Third-party cookies</h2>
               <p className="mt-3 text-base leading-relaxed text-[#475569]">
-                The current Koombo frontend codebase includes a Botpress-powered chat assistant for the Koombo AI experience. That integration is
-                treated as a functional support tool and is gated behind the functional consent category and the cookie manager. No Google
-                Analytics or Meta Pixel scripts were detected in the active codebase at the time of implementation, so no claims are made about
-                those services unless they are later added and configured intentionally.
+                The current Koombo frontend includes a native Shuri AI shopping assistant that may use functional support cookies when enabled in
+                the cookie manager. No Google Analytics or Meta Pixel scripts are active in the current app configuration, so no claims are made
+                about those services unless they are intentionally added and configured later.
               </p>
             </section>
 

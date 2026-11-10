@@ -10,14 +10,30 @@ type FormData = {
   vehicle: string;
 };
 
+/* Palette: royal purple + teal blue, with a near-black ink for borders */
 const INK = '#17102B';
 const PURPLE = '#5B21B6';
-const PAPER = '#F5F1E8';
+const PURPLE_DEEP = '#4C1D95';
+const TEAL = '#0B7285';
+const TEAL_DEEP = '#0A5566';
+const TINT = '#F3EFFF';
 
 const EMPTY: FormData = { name: '', email: '', phone: '', city: '', vehicle: 'Motorbike' };
 const VEHICLES = ['Motorbike', 'Bicycle', 'Car', 'Tricycle'];
 
-function Arrow({ className = 'h-5 w-5' }: { className?: string }) {
+const BENEFITS = [
+  { title: 'Flexible hours', text: 'Ride when it suits you, full time or on the side.' },
+  { title: 'Weekly payouts', text: 'Withdraw your earnings straight to your account.' },
+  { title: 'Local vendors', text: 'Deliver for shops and shoppers near you.' },
+];
+
+/* ------------------------------------------------------------------ */
+/* Icons                                                               */
+/* ------------------------------------------------------------------ */
+
+type IconProps = { className?: string };
+
+function Arrow({ className = 'h-5 w-5' }: IconProps) {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className}>
       <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -25,11 +41,109 @@ function Arrow({ className = 'h-5 w-5' }: { className?: string }) {
   );
 }
 
+function ArrowDown({ className = 'h-5 w-5' }: IconProps) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className}>
+      <path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function CheckIcon({ className = 'h-4 w-4' }: IconProps) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className}>
+      <path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function BellIcon({ className = 'h-5 w-5' }: IconProps) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={className}>
+      <path
+        d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15L6 16ZM10 21h4"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function Sparkle({ className = 'h-10 w-10' }: IconProps) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M12 1.5c.6 5.6 4.9 9.9 10.5 10.5-5.6.6-9.9 4.9-10.5 10.5C11.4 16.9 7.1 12.6 1.5 12 7.1 11.4 11.4 7.1 12 1.5Z" />
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Phone mockup (decorative)                                           */
+/* ------------------------------------------------------------------ */
+
+function PhoneMock() {
+  return (
+    <div
+      aria-hidden="true"
+      className="relative h-[560px] w-[270px] rounded-t-[40px] border-8 border-b-0 border-[#1B2430] bg-white sm:w-[300px]"
+    >
+      {/* notch */}
+      <span className="absolute left-1/2 top-0 h-5 w-24 -translate-x-1/2 rounded-b-2xl bg-[#1B2430]" />
+
+      <div className="px-4 pt-3">
+        {/* status bar */}
+        <div className="flex items-center justify-between text-[10px] font-semibold text-[#17102B]">
+          <span>9:41 AM</span>
+          <span className="flex items-center gap-1">
+            <span className="h-2 w-3 rounded-[2px] bg-[#17102B]" />
+            <span className="h-2 w-4 rounded-[3px] bg-[#17102B]" />
+          </span>
+        </div>
+
+        {/* title */}
+        <div className="mt-6 flex items-center justify-between text-[#17102B]">
+          <span className="text-[15px] font-bold">Wallet</span>
+          <BellIcon className="h-[18px] w-[18px]" />
+        </div>
+
+        {/* balance card */}
+        <div className="relative mt-4 overflow-hidden rounded-xl p-4 text-white" style={{ backgroundColor: TEAL_DEEP }}>
+          <Sparkle className="absolute -right-3 top-4 h-20 w-20 text-white/10" />
+          <p className="text-[10px] font-bold tracking-wide text-white/90">AVAILABLE BALANCE</p>
+          <p className="mt-3 text-[30px] font-semibold leading-none">GH₵3,540</p>
+          <div
+            className="mt-4 grid h-11 place-items-center rounded-lg bg-white text-[13px] font-bold"
+            style={{ color: TEAL_DEEP }}
+          >
+            Withdraw Money
+          </div>
+        </div>
+
+        {/* rows */}
+        <div className="mt-3 flex h-12 items-center justify-between rounded-lg border border-black/10 px-3 text-[12px] font-semibold text-[#17102B]">
+          <span>Weekly payout</span>
+          <Arrow className="h-4 w-4" />
+        </div>
+        <div className="mt-3 flex h-12 items-center justify-between rounded-lg border border-black/10 px-3 text-[12px] font-semibold text-[#17102B]">
+          <span>Deliveries today</span>
+          <span style={{ color: PURPLE }}>12</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Rider photo                                                         */
+/* ------------------------------------------------------------------ */
+
 function RiderPhoto() {
   const [ok, setOk] = useState(true);
   return (
     <div
-      className="relative h-[260px] w-full overflow-hidden rounded-[20px] border-2 shadow-[6px_6px_0_#17102B] sm:h-[340px] sm:rounded-[24px] sm:shadow-[8px_8px_0_#17102B]"
+      className="relative h-60 w-full overflow-hidden rounded-3xl border-[3px] sm:h-80 sm:rounded-[28px]"
       style={{ borderColor: INK, backgroundColor: PURPLE }}
     >
       {ok ? (
@@ -41,11 +155,22 @@ function RiderPhoto() {
           draggable={false}
         />
       ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-[#F5D0FE] via-[#C4B5FD] to-[#4C1D95]" />
+        <div
+          className="absolute inset-0"
+          style={{ background: `linear-gradient(135deg, ${PURPLE} 0%, ${TEAL} 100%)` }}
+        />
       )}
     </div>
   );
 }
+
+/* ------------------------------------------------------------------ */
+/* Page                                                                */
+/* ------------------------------------------------------------------ */
+
+const fieldCls =
+  'h-14 w-full rounded-xl border-2 border-[#17102B]/15 bg-white px-4 text-base font-medium text-[#17102B] outline-none transition placeholder:text-[#17102B]/40 focus:border-[#5B21B6] focus:ring-4 focus:ring-[#5B21B6]/15';
+const labelCls = 'mb-1.5 block text-sm font-bold text-[#17102B]/80';
 
 export default function KoomboRiderSignup({
   onBack,
@@ -75,124 +200,205 @@ export default function KoomboRiderSignup({
     setSubmitted(true);
   };
 
-  const labelCls = 'mb-1.5 block text-[12px] font-extrabold uppercase tracking-[0.12em] text-[#17102B]/75';
-
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
-        .kb-display { font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif; }
+        .kb-font { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
         .kb-balance { text-wrap: balance; }
 
-        @keyframes kb-rise { from { opacity: 0; transform: translateY(40px) rotate(2deg); } to { opacity: 1; transform: none; } }
-        .kb-rise { display: inline-block; opacity: 0; animation: kb-rise .8s cubic-bezier(.16,1,.3,1) forwards; }
-
-        @keyframes kb-stamp {
-          0% { transform: scale(2.6) rotate(-18deg); opacity: 0; }
-          60% { transform: scale(.94) rotate(-8deg); opacity: 1; }
-          80% { transform: scale(1.04) rotate(-8deg); }
-          100% { transform: scale(1) rotate(-8deg); opacity: 1; }
-        }
-        .kb-stamp { animation: kb-stamp .7s cubic-bezier(.2,.8,.2,1) .15s both; }
-        @keyframes kb-fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+        @keyframes kb-pop { 0% { transform: scale(.4); opacity: 0; } 70% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); } }
+        .kb-pop { animation: kb-pop .6s cubic-bezier(.2,.8,.2,1) both; }
+        @keyframes kb-fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
         .kb-fade-up { animation: kb-fade-up .6s cubic-bezier(.16,1,.3,1) both; }
-
-        .kb-field {
-          width: 100%;
-          border: 2px solid ${INK};
-          border-radius: 12px;
-          background: #fff;
-          padding: 14px 16px;
-          font-size: 16px;
-          font-weight: 500;
-          color: ${INK};
-          outline: none;
-          transition: transform .15s ease, box-shadow .15s ease;
-        }
-        .kb-field::placeholder { color: #17102B66; }
-        .kb-field:focus { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 ${PURPLE}; }
-
-        .kb-btn { box-shadow: 5px 5px 0 ${INK}; transition: transform .15s ease, box-shadow .15s ease, background-color .2s ease; }
-        .kb-btn:hover:not(:disabled) { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 ${INK}; }
-        .kb-btn:active:not(:disabled) { transform: translate(3px, 3px); box-shadow: 2px 2px 0 ${INK}; }
+        @keyframes kb-float { 0%,100% { translate: 0 0; } 50% { translate: 0 -6px; } }
+        .kb-float { animation: kb-float 5s ease-in-out infinite; }
 
         @media (prefers-reduced-motion: reduce) {
-          .kb-stamp, .kb-fade-up { animation: none !important; }
-          .kb-rise { animation: none !important; opacity: 1; }
+          .kb-pop, .kb-fade-up, .kb-float { animation: none !important; }
         }
       `}</style>
 
       <main
         id="rider"
-        className="relative min-h-screen overflow-x-hidden pb-16 sm:pb-24"
-        style={{ backgroundColor: PAPER, color: INK }}
+        className="kb-font relative min-h-screen overflow-x-hidden bg-white pb-16 text-[#17102B] sm:pb-24"
       >
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          {onBack && (
-            <button
-              type="button"
-              onClick={onBack}
-              className="mt-6 inline-flex min-h-[44px] items-center rounded-xl border-2 bg-white px-4 text-[15px] font-extrabold transition-colors hover:bg-[#17102B] hover:text-white"
-              style={{ borderColor: INK }}
+        {/* ---------- top colour band ---------- */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-[190px] overflow-hidden sm:h-[220px]"
+          style={{ backgroundColor: PURPLE }}
+        >
+          <div
+            className="absolute left-0 top-0 h-full w-32 sm:w-56"
+            style={{
+              backgroundImage:
+                'repeating-linear-gradient(135deg, rgba(255,255,255,.22) 0 6px, transparent 6px 18px)',
+            }}
+          />
+          <div className="absolute inset-x-0 bottom-0 h-1/3" style={{ backgroundColor: PURPLE_DEEP }} />
+        </div>
+
+        <div className="relative mx-auto w-full max-w-6xl px-3 sm:px-6 lg:px-8">
+          {/* ---------- floating nav pills ---------- */}
+          <div className="flex items-center justify-between gap-3 pt-4 sm:pt-5">
+            <div className="flex items-center gap-2">
+              <span
+                className="inline-flex h-11 items-center gap-2 rounded-full px-5 text-[15px] font-extrabold text-white shadow-lg"
+                style={{ backgroundColor: TEAL_DEEP }}
+              >
+                <Sparkle className="h-4 w-4" />
+                Koombo
+              </span>
+              {onBack && (
+                <button
+                  type="button"
+                  onClick={onBack}
+                  className="inline-flex h-11 items-center rounded-full bg-white px-5 text-[15px] font-bold shadow-lg transition-colors hover:bg-[#F3EFFF] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50"
+                >
+                  Back
+                </button>
+              )}
+            </div>
+
+            <a
+              href="#register"
+              className="hidden h-11 items-center rounded-full bg-white px-8 text-[15px] font-bold shadow-lg transition-colors hover:bg-[#F3EFFF] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50 md:inline-flex"
             >
-              Back
-            </button>
-          )}
+              Become a delivery partner
+            </a>
 
-          <div className="grid items-start gap-10 pt-8 sm:pt-12 lg:grid-cols-[1fr_minmax(0,460px)] lg:gap-16 lg:pt-16">
-            {/* Left: headline, copy, photo */}
-            <section className="min-w-0">
-              <h1
-                className="kb-display kb-balance font-extrabold"
-                style={{ fontSize: 'clamp(2.2rem, 8vw, 4.5rem)', lineHeight: 1.02, letterSpacing: '-0.04em' }}
-              >
-                <span className="kb-rise text-[#5B21B6]" style={{ animationDelay: '.05s' }}>
-                  Deliver for thousands of
-                </span>{' '}
-                <span className="kb-rise" style={{ animationDelay: '.2s' }}>
-                  local vendors and shoppers
-                </span>
-              </h1>
+            <a
+              href="#register"
+              className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 text-[15px] font-bold shadow-lg transition-colors hover:bg-[#F3EFFF] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50"
+              style={{ color: PURPLE }}
+            >
+              Register
+              <ArrowDown className="h-4 w-4" />
+            </a>
+          </div>
 
-              <p className="mt-5 max-w-xl text-[16px] leading-[1.6] text-[#17102B]/80 sm:mt-7 sm:text-[19px] sm:leading-relaxed">
-                Grow your earnings with Koombo. Partner with local vendors, deliver packages safely, and get paid for
-                every successful drop-off you make.
-              </p>
+          {/* ---------- hero frame ---------- */}
+          <section
+            className="mt-5 overflow-hidden rounded-[28px] border-[3px] bg-white sm:mt-6 sm:rounded-[36px]"
+            style={{ borderColor: INK }}
+          >
+            <div className="grid lg:grid-cols-[1.1fr_.9fr]">
+              {/* left: copy */}
+              <div className="min-w-0 px-6 pb-4 pt-9 sm:px-12 sm:pt-14 lg:self-center lg:py-16 lg:pl-14 lg:pr-4">
+                <h1
+                  className="kb-balance font-extrabold text-[#0D0B14]"
+                  style={{ fontSize: 'clamp(2.35rem, 9vw, 4.4rem)', lineHeight: 1.06, letterSpacing: '-0.04em' }}
+                >
+                  Deliver for thousands of local vendors and shoppers
+                </h1>
 
-              <p className="mt-4 text-[15px] font-bold text-[#5B21B6]">
-                Flexible hours. Weekly payouts. Start earning today.
-              </p>
+                <p className="mt-5 max-w-md text-[17px] leading-relaxed text-[#17102B]/80 sm:mt-6 sm:text-lg">
+                  Partner with local vendors, deliver packages safely, and get paid for every successful drop-off.
+                </p>
 
-              <div className="mt-8 sm:mt-10">
-                <RiderPhoto />
+                <p className="mt-4 text-[15px] font-bold" style={{ color: TEAL }}>
+                  Flexible hours. Weekly payouts. Start earning today.
+                </p>
+
+                <div className="mt-7 flex items-center gap-3 sm:mt-8">
+                  <a
+                    href="#register"
+                    aria-label="Go to the registration form"
+                    className="grid h-12 w-12 shrink-0 place-items-center rounded-full text-white transition-transform hover:translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#5B21B6]/30"
+                    style={{ backgroundColor: PURPLE }}
+                  >
+                    <ArrowDown className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="#register"
+                    className="inline-flex h-12 items-center rounded-full px-6 text-[15px] font-extrabold text-white transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#0B7285]/30"
+                    style={{ backgroundColor: TEAL }}
+                  >
+                    Register now
+                  </a>
+                </div>
               </div>
-            </section>
 
-            {/* Right: ticket form */}
-            <section id="register" aria-label="Register as a delivery partner" className="min-w-0 scroll-mt-6">
-              <div
-                className="relative rounded-[20px] border-2 bg-white shadow-[6px_6px_0_#17102B] sm:rounded-[24px] sm:shadow-[8px_8px_0_#17102B]"
-                style={{ borderColor: INK }}
-              >
-                {/* ticket header */}
-                <div className="flex items-center justify-between gap-3 rounded-t-[17px] bg-[#17102B] px-5 py-3 text-[#F5F1E8] sm:rounded-t-[21px] sm:px-7">
-                  <span className="text-[12px] font-extrabold uppercase tracking-[0.14em] sm:text-[13px]">Delivery partner</span>
-                  <span className="text-[12px] font-extrabold uppercase tracking-[0.14em] text-[#C4B5FD] sm:text-[13px]">
-                    Koombo
-                  </span>
+              {/* right: phone */}
+              <div className="relative mt-4 h-[420px] overflow-hidden sm:h-[470px] lg:mt-0 lg:h-auto lg:min-h-[580px]">
+                <div className="absolute left-1/2 top-6 -translate-x-1/2 lg:left-auto lg:right-12 lg:top-14 lg:translate-x-0">
+                  <PhoneMock />
                 </div>
 
-                {!submitted ? (
-                  <form onSubmit={handleSubmit} className="px-5 pb-6 pt-6 sm:px-7 sm:pb-8 sm:pt-7">
-                    <h2 className="kb-display kb-balance text-[24px] font-extrabold leading-[1.1] tracking-[-0.03em] sm:text-[28px]">
-                      Register as a delivery partner
-                    </h2>
-                    <p className="mt-2 text-[15px] leading-relaxed text-[#17102B]/70">
-                      Tell us about yourself and we&rsquo;ll get you on the road.
-                    </p>
+                {/* overlapping notice card */}
+                <div
+                  aria-hidden="true"
+                  className="kb-float absolute bottom-4 left-2.5 z-10 flex w-[178px] items-center gap-3 rounded-2xl border-2 p-3 shadow-lg sm:left-8 sm:w-[200px] lg:bottom-8 lg:left-5"
+                  style={{ borderColor: INK, backgroundColor: TINT }}
+                >
+                  <span className="relative grid h-11 w-11 shrink-0 place-items-center">
+                    <Sparkle className="absolute h-11 w-11 text-[#C4B5FD]" />
+                    <Sparkle className="relative h-6 w-6" />
+                  </span>
+                  <span className="min-w-0 leading-tight">
+                    <span className="block text-[13px] font-extrabold">Delivery complete</span>
+                    <span className="block text-[13px] font-bold" style={{ color: TEAL }}>
+                      +GH₵25
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </section>
 
-                    <div className="mt-6 space-y-4 sm:space-y-5">
+          {/* ---------- registration ---------- */}
+          <div
+            id="register"
+            className="mt-12 grid scroll-mt-6 gap-8 sm:mt-16 lg:grid-cols-[1fr_minmax(0,480px)] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-0"
+          >
+            {/* A: heading + benefits */}
+            <div className="min-w-0 lg:col-start-1 lg:row-start-1">
+              <h2
+                className="kb-balance font-extrabold text-[#0D0B14]"
+                style={{ fontSize: 'clamp(1.9rem, 6.5vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.035em' }}
+              >
+                Register as a delivery partner
+              </h2>
+              <p className="mt-3 max-w-lg text-base leading-relaxed text-[#17102B]/75 sm:text-lg">
+                Tell us about yourself and we&rsquo;ll get you on the road.
+              </p>
+
+              <ul className="mt-6 space-y-4">
+                {BENEFITS.map((b) => (
+                  <li key={b.title} className="flex items-start gap-3.5">
+                    <span
+                      className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full text-white"
+                      style={{ backgroundColor: TEAL }}
+                    >
+                      <CheckIcon className="h-3.5 w-3.5" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-base font-extrabold leading-6">{b.title}</span>
+                      <span className="block text-[15px] leading-6 text-[#17102B]/70">{b.text}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* B: form card */}
+            <div className="min-w-0 lg:col-start-2 lg:row-span-2 lg:row-start-1">
+              <div
+                className="rounded-[28px] border-[3px] bg-white p-5 sm:rounded-[32px] sm:p-8"
+                style={{ borderColor: INK }}
+              >
+                {!submitted ? (
+                  <form onSubmit={handleSubmit}>
+                    <span
+                      className="inline-flex rounded-full px-4 py-1.5 text-sm font-extrabold text-white"
+                      style={{ backgroundColor: TEAL_DEEP }}
+                    >
+                      Delivery partner
+                    </span>
+
+                    <div className="mt-5 space-y-4">
                       <div>
                         <label htmlFor="kb-name" className={labelCls}>Full name</label>
                         <input
@@ -201,7 +407,7 @@ export default function KoomboRiderSignup({
                           type="text"
                           autoComplete="name"
                           placeholder="Kwame Mensah"
-                          className="kb-field"
+                          className={fieldCls}
                           value={formData.name}
                           onChange={set('name')}
                         />
@@ -215,7 +421,7 @@ export default function KoomboRiderSignup({
                           type="email"
                           autoComplete="email"
                           placeholder="kwame@example.com"
-                          className="kb-field"
+                          className={fieldCls}
                           value={formData.email}
                           onChange={set('email')}
                         />
@@ -230,13 +436,13 @@ export default function KoomboRiderSignup({
                           autoComplete="tel"
                           inputMode="tel"
                           placeholder="+233 XX XXX XXXX"
-                          className="kb-field"
+                          className={fieldCls}
                           value={formData.phone}
                           onChange={set('phone')}
                         />
                       </div>
 
-                      <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
+                      <div className="grid gap-4 sm:grid-cols-2">
                         <div>
                           <label htmlFor="kb-city" className={labelCls}>City</label>
                           <input
@@ -245,7 +451,7 @@ export default function KoomboRiderSignup({
                             type="text"
                             autoComplete="address-level2"
                             placeholder="Sunyani"
-                            className="kb-field"
+                            className={fieldCls}
                             value={formData.city}
                             onChange={set('city')}
                           />
@@ -255,7 +461,7 @@ export default function KoomboRiderSignup({
                           <select
                             id="kb-vehicle"
                             required
-                            className="kb-field"
+                            className={fieldCls}
                             value={formData.vehicle}
                             onChange={set('vehicle')}
                           >
@@ -267,24 +473,11 @@ export default function KoomboRiderSignup({
                       </div>
                     </div>
 
-                    {/* perforation */}
-                    <div className="relative my-6 sm:my-7" aria-hidden="true">
-                      <div className="border-t-2 border-dashed" style={{ borderColor: INK }} />
-                      <span
-                        className="absolute -left-[33px] top-1/2 h-6 w-6 -translate-y-1/2 rounded-full border-2 sm:-left-[41px]"
-                        style={{ borderColor: INK, backgroundColor: PAPER, clipPath: 'inset(0 0 0 50%)' }}
-                      />
-                      <span
-                        className="absolute -right-[33px] top-1/2 h-6 w-6 -translate-y-1/2 rounded-full border-2 sm:-right-[41px]"
-                        style={{ borderColor: INK, backgroundColor: PAPER, clipPath: 'inset(0 50% 0 0)' }}
-                      />
-                    </div>
-
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="kb-btn flex h-14 w-full items-center justify-center gap-2 rounded-xl border-2 bg-[#5B21B6] text-[16px] font-extrabold text-white disabled:cursor-not-allowed disabled:opacity-60"
-                      style={{ borderColor: INK }}
+                      className="mt-6 flex h-14 w-full items-center justify-center gap-2 rounded-full text-base font-extrabold text-white transition-colors hover:bg-[#4C1D95] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#5B21B6]/30 disabled:cursor-not-allowed disabled:opacity-60"
+                      style={{ backgroundColor: PURPLE }}
                     >
                       {isSubmitting ? (
                         <>
@@ -301,42 +494,51 @@ export default function KoomboRiderSignup({
                       )}
                     </button>
 
-                    <p className="mt-4 text-center text-[13px] leading-relaxed text-[#17102B]/60">
+                    <p className="mt-4 text-center text-sm leading-relaxed text-[#17102B]/60">
                       By registering you agree to be contacted by Koombo about your application.
                     </p>
                   </form>
                 ) : (
-                  <div className="relative overflow-hidden px-5 pb-8 pt-8 text-center sm:px-7 sm:pb-10 sm:pt-10">
-                    <div className="kb-stamp mx-auto flex w-fit max-w-full flex-col items-center rounded-2xl border-[4px] border-[#5B21B6] px-5 py-3 text-[#5B21B6] sm:px-6">
-                      <span className="kb-display text-[32px] font-extrabold leading-none tracking-[-0.03em] sm:text-[44px]">
-                        YOU&rsquo;RE IN
-                      </span>
-                      <span className="mt-1.5 text-[12px] font-extrabold uppercase tracking-[0.18em]">Rider no. {ref}</span>
-                    </div>
-
+                  <div className="px-1 py-6 text-center sm:py-10" aria-live="polite">
+                    <span
+                      className="kb-pop mx-auto grid h-20 w-20 place-items-center rounded-full text-white"
+                      style={{ backgroundColor: TEAL }}
+                    >
+                      <CheckIcon className="h-9 w-9" />
+                    </span>
+                    <h3 className="kb-fade-up mt-6 text-[28px] font-extrabold leading-tight tracking-[-0.03em]" style={{ animationDelay: '.2s' }}>
+                      You&rsquo;re in
+                    </h3>
+                    <p className="kb-fade-up mt-1 text-sm font-extrabold" style={{ color: PURPLE, animationDelay: '.3s' }}>
+                      Rider no. {ref}
+                    </p>
                     <p
-                      className="kb-fade-up mx-auto mt-8 max-w-sm text-[16px] leading-relaxed text-[#17102B]/80 sm:text-[17px]"
-                      style={{ animationDelay: '.7s' }}
+                      className="kb-fade-up mx-auto mt-5 max-w-sm text-base leading-relaxed text-[#17102B]/80"
+                      style={{ animationDelay: '.4s' }}
                     >
                       Thanks, {formData.name.split(' ')[0] || 'friend'}. We&rsquo;ll send the next steps to{' '}
-                      <span className="break-all font-bold text-[#5B21B6]">{formData.email}</span>.
+                      <span className="break-all font-bold" style={{ color: PURPLE }}>{formData.email}</span>.
                     </p>
-
-                     <button
+                    <button
                       type="button"
                       onClick={() => {
                         setSubmitted(false);
                         setFormData(EMPTY);
                       }}
-                      className="kb-fade-up mt-7 inline-flex min-h-[44px] items-center rounded-xl border-2 px-5 text-[15px] font-extrabold transition-colors hover:bg-[#17102B] hover:text-white"
-                      style={{ borderColor: INK, animationDelay: '.9s' }}
+                      className="kb-fade-up mt-7 inline-flex h-12 items-center rounded-full border-2 px-6 text-[15px] font-extrabold transition-colors hover:bg-[#F3EFFF] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#5B21B6]/30"
+                      style={{ borderColor: INK, animationDelay: '.55s' }}
                     >
                       Register another rider
                     </button>
                   </div>
                 )}
               </div>
-            </section>
+            </div>
+
+            {/* C: photo */}
+            <div className="min-w-0 lg:col-start-1 lg:row-start-2 lg:mt-10">
+              <RiderPhoto />
+            </div>
           </div>
         </div>
       </main>

@@ -65,7 +65,7 @@ const CONDITIONS = ['New', 'Like New', 'Good', 'Fair', 'Poor'];
 
 const fieldClass = 'mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base font-normal outline-none focus:border-violet-600 focus:ring-2 focus:ring-violet-200';
 
-function LokiHeader({ seller }: { seller: Seller | null }) {
+function ShuriHeader({ seller }: { seller: Seller | null }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const header = (
@@ -82,7 +82,7 @@ function LokiHeader({ seller }: { seller: Seller | null }) {
             <Sparkles size={14} className="sm:hidden" />
             <Sparkles size={16} className="hidden sm:block" />
           </span>
-          <span className="text-sm sm:text-base">Loki AI</span>
+          <span className="text-sm sm:text-base">Shuri AI</span>
         </span>
         <span className="hidden max-w-48 truncate text-xs sm:text-sm font-semibold text-slate-500 md:block">{seller?.businessName || 'New listing'}</span>
         <span className="w-8 sm:w-10" />
@@ -113,7 +113,7 @@ function readVideoDuration(file: File): Promise<number> {
   });
 }
 
-export default function LokiListingPage() {
+export default function ShuriListingPage() {
   const [seller, setSeller] = useState<Seller | null>(null);
   const [loadingSeller, setLoadingSeller] = useState(true);
   const [busy, setBusy] = useState(false);
@@ -182,7 +182,7 @@ export default function LokiListingPage() {
 
         const response = await fetch('/api/listings', { method: 'POST', body: data });
         const payload = await response.json().catch(() => null);
-        if (!response.ok) throw new Error(payload?.error || 'Loki could not analyze this photo.');
+        if (!response.ok) throw new Error(payload?.error || 'Shuri could not analyze this photo.');
         if (cancelled) return;
         setScanProgress(72);
         setAiMessage('Drafting the listing preview…');
@@ -205,12 +205,12 @@ export default function LokiListingPage() {
         });
         setScanProgress(100);
         setAiState('done');
-        setAiMessage('Loki filled in the details from your photo. You can review and edit them in the next steps.');
+        setAiMessage('Shuri filled in the details from your photo. You can review and edit them in the next steps.');
       } catch (cause) {
         if (cancelled) return;
         setAiState('failed');
         setScanProgress(0);
-        setAiMessage(cause instanceof Error ? `${cause.message} You can still fill the form manually.` : 'Loki could not analyze this photo. You can still fill the form manually.');
+        setAiMessage(cause instanceof Error ? `${cause.message} You can still fill the form manually.` : 'Shuri could not analyze this photo. You can still fill the form manually.');
       }
     })();
 
@@ -339,7 +339,7 @@ export default function LokiListingPage() {
 
   // ---- Render ----
   const stageHints = [
-    photos.length === 0 ? 'Add at least one photo to continue.' : aiState === 'working' ? 'Loki is reading your photo…' : '',
+    photos.length === 0 ? 'Add at least one photo to continue.' : aiState === 'working' ? 'Shuri is reading your photo…' : '',
     '',
     'Add a name (3+ characters) and a description (10+ characters).',
     'Enter a price above 0 and set a stock count.',
@@ -348,7 +348,7 @@ export default function LokiListingPage() {
 
   return (
     <main className="min-h-screen bg-[#F8F7FB] pb-12 text-slate-900">
-      <LokiHeader seller={seller} />
+      <ShuriHeader seller={seller} />
       <div className="mx-auto max-w-3xl px-3 sm:px-4 md:px-6 py-6 sm:py-7 md:py-10">
         <div className="mb-3 flex justify-end">
           <Link
@@ -360,7 +360,7 @@ export default function LokiListingPage() {
         </div>
         <div className="mb-5 sm:mb-6">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-tight">Create a product listing</h1>
-          <p className="mt-2 text-xs sm:text-sm md:text-base leading-relaxed text-slate-600">Start with your photos. Loki will fill in the details for you to check.</p>
+          <p className="mt-2 text-xs sm:text-sm md:text-base leading-relaxed text-slate-600">Start with your photos. Shuri will fill in the details for you to check.</p>
         </div>
 
         {loadingSeller ? (
@@ -428,7 +428,7 @@ export default function LokiListingPage() {
                 <section className="space-y-3 sm:space-y-4">
                   <div>
                     <h2 className="text-lg sm:text-xl font-extrabold">Upload product photos</h2>
-                    <p className="mt-1 text-xs sm:text-sm text-slate-600">Add up to {MAX_PHOTOS} clear photos. The first photo is your cover, and Loki uses it to fill in the form.</p>
+                    <p className="mt-1 text-xs sm:text-sm text-slate-600">Add up to {MAX_PHOTOS} clear photos. The first photo is your cover, and Shuri uses it to fill in the form.</p>
                   </div>
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
@@ -532,7 +532,7 @@ export default function LokiListingPage() {
                 <section className="space-y-3 sm:space-y-4">
                   <div>
                     <h2 className="text-lg sm:text-xl font-extrabold">Product details</h2>
-                    <p className="mt-1 text-xs sm:text-sm text-slate-600">{aiState === 'done' ? 'Loki drafted these from your photo. Fix anything that looks off.' : 'Tell buyers what you are selling.'}</p>
+                    <p className="mt-1 text-xs sm:text-sm text-slate-600">{aiState === 'done' ? 'Shuri drafted these from your photo. Fix anything that looks off.' : 'Tell buyers what you are selling.'}</p>
                   </div>
                   <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
                     <label className="block text-xs sm:text-sm font-bold sm:col-span-2">Product name<input required maxLength={120} value={form.title} onChange={(e) => setField('title', e.target.value)} className={fieldClass} placeholder="e.g. Handmade leather sandals" /></label>
@@ -548,7 +548,7 @@ export default function LokiListingPage() {
                 <section className="space-y-3 sm:space-y-4">
                   <div>
                     <h2 className="text-lg sm:text-xl font-extrabold">Price and condition</h2>
-                    <p className="mt-1 text-xs sm:text-sm text-slate-600">{form.price && aiState === 'done' && !touched.current.has('price') ? 'Loki suggested this price. Check it before you continue.' : 'Set a fair price and be honest about condition.'}</p>
+                    <p className="mt-1 text-xs sm:text-sm text-slate-600">{form.price && aiState === 'done' && !touched.current.has('price') ? 'Shuri suggested this price. Check it before you continue.' : 'Set a fair price and be honest about condition.'}</p>
                   </div>
                   <div className="grid gap-3 sm:gap-4 sm:grid-cols-3">
                     <label className="block text-xs sm:text-sm font-bold">Price (GH₵)<input required min="0.01" step="0.01" type="number" inputMode="decimal" value={form.price} onChange={(e) => setField('price', e.target.value)} className={fieldClass} placeholder="0.00" /></label>

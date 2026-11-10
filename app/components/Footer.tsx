@@ -62,15 +62,20 @@ export default function KoomboFooter() {
         <div className="flex flex-col gap-12 md:flex-row md:justify-between md:gap-8">
           {/* Brand */}
           <div className="max-w-sm space-y-6">
-            <div className="flex items-center gap-3">
-              {/* INCREASED LOGO SIZE: Changed from h-10 to h-14 sm:h-16 */}
-              <img 
-                src="/logo1.png" 
-                alt="Koombo" 
-                className="h-14 w-auto object-contain"
+            <div className="flex flex-col items-start gap-0">
+              {/* Logo: significantly larger (was h-14) */}
+              <img
+                src="/logo1.png"
+                alt="Koombo"
+                className="h-24 w-auto object-contain sm:h-28 lg:h-32"
                 style={{ filter: 'brightness(0) invert(1) saturate(0)' }}
               />
+              {/* Tagline tucked close beneath the logo */}
+              <p className="-mt-2 text-lg font-bold italic tracking-wide text-amber-300 sm:-mt-3 sm:text-xl">
+                Find what you want and more
+              </p>
             </div>
+
             <p className="text-base leading-relaxed text-white/75">
               Discover authentic products, follow trusted sellers, and shop the way your community does — live, local, and personal.
             </p>

@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
-import { ArrowRight, Gift, Home, Info, Menu, Phone, Play, Store, Users, X } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { ArrowRight, Gift, Home, Info, LogIn, Menu, Phone, Play, Store, User, UserPlus, Users, X } from 'lucide-react';
 
 const navLinks = [
   { label: 'Home', href: '/', icon: Home },
@@ -16,13 +16,20 @@ export default function SiteHeader({
   ctaLabel = 'Become a Vendor',
   demoHref = '/watch-demo',
   promoHref = '/lister',
+  loginHref = '/login',
+  signupHref = '/signup',
 }: {
   ctaLabel?: string;
   demoHref?: string;
   promoHref?: string;
+  loginHref?: string;
+  signupHref?: string;
 }) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const profileRef = useRef<HTMLDivElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -30,6 +37,37 @@ export default function SiteHeader({
     else document.body.style.overflow = '';
     return () => { document.body.style.overflow = ''; };
   }, [isMenuOpen]);
+
+  // Close profile dropdown on outside click / Escape
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (profileRef.current && !profileRef.current.contains(e.target as Node)) setIsProfileOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsProfileOpen(false);
+    };
+    document.addEventListener('mousedown', onClick);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onClick);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, []);
+
+  // Close dropdown on route change
+  useEffect(() => {
+    setIsProfileOpen(false);
+  }, [pathname]);
+
+  // Small delay on mouse leave so the dropdown doesn't flicker shut
+  const openProfile = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setIsProfileOpen(true);
+  };
+  const scheduleCloseProfile = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setIsProfileOpen(false), 150);
+  };
 
   return (
     <>
@@ -130,10 +168,80 @@ export default function SiteHeader({
                   <Store size={18} />
                   {ctaLabel}
                 </Link>
-                <Link href={demoHref} className="inline-flex items-center gap-2 rounded-xl bg-[#6D28D9] px-4 py-2.5 text-[15px] font-bold text-white transition-all hover:bg-[#5B21B6]">
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-[#6D28D9]"><Play size={12} /></span>
-                  Watch Demo
-                </Link>
+
+                {/* PROFILE PILL (Airbnb style) with hover dropdown */}
+                <div
+                  ref={profileRef}
+                  className="relative"
+                  onMouseEnter={openProfile}
+                  onMouseLeave={scheduleCloseProfile}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setIsProfileOpen((v) => !v)}
+                    onFocus={openProfile}
+                    aria-haspopup="menu"
+                    aria-expanded={isProfileOpen}
+                    aria-label="Account menu"
+                    className={`flex items-center gap-3 rounded-full border bg-white py-1.5 pl-3.5 pr-1.5 transition-shadow hover:shadow-md ${
+                      isProfileOpen ? 'border-[#D1D5DB] shadow-md' : 'border-[#DDDDDD]'
+                    }`}
+                  >
+                    <Menu size={18} className="text-[#101820]" strokeWidth={2.2} />
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#6D28D9] text-white">
+                      <User size={18} fill="currentColor" strokeWidth={0} />
+                    </span>
+                  </button>
+
+                  {/* Dropdown */}
+                  <div
+                    role="menu"
+                    aria-label="Account"
+                    className={`absolute right-0 top-full z-[130] w-64 pt-2 transition-all duration-200 ${
+                      isProfileOpen
+                        ? 'pointer-events-auto translate-y-0 opacity-100'
+                        : 'pointer-events-none -translate-y-1 opacity-0'
+                    }`}
+                  >
+                    <div className="overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white py-2 shadow-[0_8px_30px_rgba(0,0,0,0.14)]">
+                      <Link
+                        href={signupHref}
+                        role="menuitem"
+                        className="flex items-center gap-3 px-4 py-3 text-[15px] font-semibold text-[#101820] transition-colors hover:bg-gray-50"
+                      >
+                        <UserPlus size={18} className="text-[#6D28D9]" />
+                        Create account
+                      </Link>
+                      <Link
+                        href={loginHref}
+                        role="menuitem"
+                        className="flex items-center gap-3 px-4 py-3 text-[15px] text-[#101820] transition-colors hover:bg-gray-50"
+                      >
+                        <LogIn size={18} className="text-[#6B7280]" />
+                        Log in
+                      </Link>
+
+                      <div className="my-2 border-t border-[#E5E7EB]" />
+
+                      <Link
+                        href="/lister"
+                        role="menuitem"
+                        className="flex items-center gap-3 px-4 py-3 text-[15px] text-[#101820] transition-colors hover:bg-gray-50"
+                      >
+                        <Store size={18} className="text-[#6B7280]" />
+                        {ctaLabel}
+                      </Link>
+                      <Link
+                        href={demoHref}
+                        role="menuitem"
+                        className="flex items-center gap-3 px-4 py-3 text-[15px] text-[#101820] transition-colors hover:bg-gray-50"
+                      >
+                        <Play size={18} className="text-[#6B7280]" />
+                        Watch Demo
+                      </Link>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -174,9 +282,13 @@ export default function SiteHeader({
                   <Store size={18} strokeWidth={2} />
                   {ctaLabel}
                 </Link>
-                <Link href={demoHref} onClick={() => setIsMenuOpen(false)} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#6D28D9] px-4 py-3 text-base font-bold text-white transition-all hover:bg-[#5B21B6]">
-                  <Play size={16} strokeWidth={2} />
-                  Watch a Demo
+                <Link href={signupHref} onClick={() => setIsMenuOpen(false)} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#6D28D9] px-4 py-3 text-base font-bold text-white transition-all hover:bg-[#5B21B6]">
+                  <UserPlus size={18} strokeWidth={2} />
+                  Create account
+                </Link>
+                <Link href={loginHref} onClick={() => setIsMenuOpen(false)} className="flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 px-4 py-3 text-base font-semibold text-[#101820] hover:bg-gray-50 transition-all">
+                  <LogIn size={18} strokeWidth={2} />
+                  Log in
                 </Link>
               </div>
             </div>
