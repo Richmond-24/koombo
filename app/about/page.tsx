@@ -683,86 +683,65 @@ export default function AboutPage() {
       </section>
 
       {/* ================= MISSION & VISION ================= */}
-      <section id="our-story" className="scroll-mt-20 bg-white pb-16 sm:pb-24">
-        <div className="mx-auto grid max-w-7xl gap-5 px-5 sm:px-8 lg:grid-cols-2 lg:px-12">
+      <section id="our-story" className="scroll-mt-20 bg-white pb-14 sm:pb-20">
+        <div className="mx-auto grid max-w-7xl gap-4 px-5 sm:gap-5 sm:px-8 md:grid-cols-2 lg:px-12">
           {/* MISSION */}
           <Reveal x={-40} y={0} as="article">
-            <div className="flex h-full min-h-[26rem] flex-col rounded-[2rem] border-2 border-black bg-[#2E1065] p-7 text-white sm:min-h-[30rem] sm:p-10">
-              {/* semicircle accent */}
+            <div className="flex h-full flex-col rounded-[1.5rem] border-2 border-black bg-[#2E1065] p-5 text-white sm:rounded-[2rem] sm:p-8">
               <span
                 aria-hidden
-                className="block h-[26px] w-[52px] rounded-t-full bg-[#8B5CF6] sm:h-[30px] sm:w-[60px]"
+                className="block h-[20px] w-[40px] rounded-t-full bg-[#8B5CF6] sm:h-[26px] sm:w-[52px]"
               />
 
               <h2
                 className={`${h} -mt-1 text-white`}
                 style={{
                   ...headingStyle,
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                  fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
                 }}
               >
                 Our mission
               </h2>
 
-              <p className="mt-6 max-w-xl text-xl font-medium leading-[1.5] text-white/90 sm:text-2xl sm:leading-[1.5]">
-                To transform how Africa discovers, connects, buys and sells by
-                building an intelligent, AI-powered social commerce ecosystem
-                that brings people, businesses, creators and opportunities
-                together. We are making commerce more accessible, social and
-                rewarding by empowering businesses to reach customers, enabling
-                creators and connectors to earn through meaningful influence,
-                and using intelligent AI agents to simplify discovery, facilitate
-                connections and make buying and selling seamless. Our mission is
-                to give every African business the tools, visibility and
-                intelligent support to grow beyond traditional boundaries.
+              <p className="mt-3 text-base font-medium leading-7 text-white/90 sm:mt-4 sm:text-lg sm:leading-8">
+                To make buying and selling in Africa simpler, more social and
+                more rewarding, with AI that helps every business grow.
               </p>
 
-              <div className="mt-auto flex items-center gap-2.5 pt-10 text-lg font-extrabold text-white sm:text-xl">
-                <Target size={22} />
-                Building Africa's commerce future
-                <ArrowRight size={20} />
+              <div className="mt-5 flex items-center gap-2 text-sm font-extrabold text-white sm:mt-6 sm:text-base">
+                <Target size={18} className="shrink-0" />
+                Building Africa&apos;s commerce future
               </div>
             </div>
           </Reveal>
 
           {/* VISION */}
           <Reveal x={40} y={0} delay={150} as="article">
-            <div className="flex h-full min-h-[26rem] flex-col rounded-[2rem] border-2 border-black bg-[#EDE9FE] p-7 text-black sm:min-h-[30rem] sm:p-10">
-              {/* semicircle accent */}
+            <div className="flex h-full flex-col rounded-[1.5rem] border-2 border-black bg-[#EDE9FE] p-5 text-black sm:rounded-[2rem] sm:p-8">
               <span
                 aria-hidden
-                className="block h-[26px] w-[52px] rounded-t-full bg-[#6D28D9] sm:h-[30px] sm:w-[60px]"
+                className="block h-[20px] w-[40px] rounded-t-full bg-[#6D28D9] sm:h-[26px] sm:w-[52px]"
               />
 
               <h2
                 className={`${h} -mt-1 text-black`}
                 style={{
                   ...headingStyle,
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                  fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
                 }}
               >
                 Our vision
               </h2>
 
-              <p className="mt-6 max-w-xl text-xl font-medium leading-[1.5] text-[#45415A] sm:text-2xl sm:leading-[1.5]">
-                To become Africa's leading agentic social commerce ecosystem,
-                transforming the continent into a connected digital marketplace
-                where intelligent AI agents, people and businesses work together
-                to make commerce effortless. We envision a future where anyone
-                can discover what they need, businesses can find their ideal
-                customers, creators can turn influence into income, and
-                intelligent agents can proactively connect opportunities,
-                understand intentions and help complete commerce journeys. A
-                future where geographical barriers no longer limit opportunity,
-                every connection creates value, and every African has the
-                opportunity to participate in and benefit from the digital
-                economy.
+              <p className="mt-3 text-base font-medium leading-7 text-[#45415A] sm:mt-4 sm:text-lg sm:leading-8">
+                To be Africa&apos;s leading social commerce ecosystem, where
+                people, businesses and AI agents make commerce effortless for
+                everyone.
               </p>
 
-              <div className="mt-auto flex items-center gap-2.5 pt-10 text-lg font-extrabold text-black sm:text-xl">
-                <Eye size={22} />
+              <div className="mt-5 flex items-center gap-2 text-sm font-extrabold text-black sm:mt-6 sm:text-base">
+                <Eye size={18} className="shrink-0" />
                 The future of African commerce
-                <ArrowRight size={20} />
               </div>
             </div>
           </Reveal>

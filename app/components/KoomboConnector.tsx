@@ -875,7 +875,7 @@ export default function KoomboConnector({
           from="scale"
           className="mt-12 w-full min-w-0 sm:mt-24 md:mt-32"
         >
-          <div className="relative overflow-hidden rounded-[24px] bg-[#18181B] px-5 py-10 text-center text-white sm:rounded-[32px] sm:px-8 sm:py-20 lg:px-14">
+          <div className="relative overflow-hidden rounded-[24px] bg-[#18181B] px-5 py-10 text-center text-white sm:rounded-[32px] sm:px-10 sm:py-16 lg:px-16 lg:py-20">
             <svg
               aria-hidden="true"
               viewBox="0 0 400 400"
@@ -920,27 +920,30 @@ export default function KoomboConnector({
               ))}
             </svg>
 
-            <p className="t-eyebrow relative text-[12px] text-[#C4B5FD] sm:text-[14px]">
-              Ready when you are
-            </p>
+            {/* Content: one centred column, sits above the decorative rings */}
+            <div className="relative z-10 mx-auto flex w-full max-w-[720px] flex-col items-center text-center">
+              <p className="t-eyebrow text-[12px] text-[#C4B5FD] sm:text-[14px]">
+                Ready when you are
+              </p>
 
-            <h2 className="t-balance relative mx-auto mt-3 max-w-[600px] text-[clamp(1.75rem,7.2vw,4rem)] font-extrabold leading-[1.1] tracking-[-0.03em] text-white sm:mt-4 sm:leading-[1.08] sm:tracking-[-0.04em]">
-              Start earning on every sale today
-            </h2>
+              <h2 className="t-balance mt-3 w-full text-[1.75rem] font-extrabold leading-[1.15] tracking-[-0.03em] text-white min-[400px]:text-[2rem] sm:mt-4 sm:text-[2.75rem] sm:leading-[1.1] lg:text-[3.5rem] lg:leading-[1.08] lg:tracking-[-0.04em]">
+                Start earning on every sale today
+              </h2>
 
-            <p className="relative mx-auto mt-3 max-w-[480px] text-[0.92rem] leading-[1.65] text-white/60 sm:mt-4 sm:text-[1.125rem] sm:leading-7">
-              No stock, no upfront costs. Just your unique link and your people.
-            </p>
+              <p className="mt-4 max-w-[28rem] text-[0.95rem] leading-[1.65] text-white/65 sm:mt-5 sm:max-w-[32rem] sm:text-[1.0625rem] sm:leading-7 lg:text-[1.125rem]">
+                No stock, no upfront costs. Just your unique link and your people.
+              </p>
 
-            <button
-              type="button"
-              onClick={handleRegister}
-              className="t-btn group relative mt-7 inline-flex h-12 w-full max-w-[320px] items-center justify-center gap-2 rounded-full bg-white px-6 text-[#18181B] transition hover:-translate-y-0.5 hover:bg-[#F5F3FF] active:scale-[.97] sm:mt-10 sm:h-14 sm:w-auto sm:max-w-none sm:px-8"
-            >
-              Become a Connector
+              <button
+                type="button"
+                onClick={handleRegister}
+                className="t-btn group mt-7 inline-flex h-12 w-full max-w-[320px] items-center justify-center gap-2 rounded-full bg-white px-6 text-[#18181B] transition hover:-translate-y-0.5 hover:bg-[#F5F3FF] active:scale-[.97] sm:mt-9 sm:h-14 sm:w-auto sm:max-w-none sm:px-9"
+              >
+                Become a Connector
 
-              <Arrow className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </button>
+                <Arrow className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </button>
+            </div>
           </div>
         </Reveal>
       </div>

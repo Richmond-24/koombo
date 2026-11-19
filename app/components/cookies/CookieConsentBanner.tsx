@@ -8,16 +8,16 @@ export default function CookieConsentBanner() {
   if (!isBannerVisible) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[200] flex justify-center px-3 pb-4 sm:px-6">
-      <div className="w-full max-w-6xl overflow-hidden rounded-[28px] border border-[#E5E7EB] bg-white/95 shadow-[0_24px_80px_-24px_rgba(15,23,42,0.35)] backdrop-blur-xl">
-        <div className="flex flex-col gap-6 p-4 sm:p-6 lg:flex-row lg:items-end lg:justify-between lg:gap-8">
-          <div className="max-w-3xl">
-            <div className="mb-3 flex items-center gap-2 text-[#5B21B6]">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F3E8FF] text-xl">🍪</span>
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#5B21B6]">Privacy</span>
+    <div className="fixed inset-x-0 bottom-0 z-[200] flex justify-center px-2 pb-2 sm:px-4 sm:pb-4 lg:px-6">
+      <div className="max-h-[calc(100dvh-1rem)] w-full max-w-6xl overflow-y-auto rounded-2xl border border-[#E5E7EB] bg-white/95 shadow-[0_24px_80px_-24px_rgba(15,23,42,0.35)] backdrop-blur-xl sm:rounded-[28px] sm:max-h-[calc(100dvh-2rem)]">
+        <div className="flex flex-col gap-4 p-3 sm:gap-6 sm:p-5 lg:flex-row lg:items-end lg:justify-between lg:gap-8 lg:p-6">
+          <div className="min-w-0 max-w-3xl">
+            <div className="mb-2 flex items-center gap-2 text-[#5B21B6] sm:mb-3">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#F3E8FF] text-lg sm:h-9 sm:w-9 sm:text-xl">🍪</span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5B21B6] sm:text-xs">Privacy</span>
             </div>
-            <h2 className="text-2xl font-bold tracking-[-0.04em] text-[#101820] sm:text-[2rem]">Your privacy matters to us 🍪</h2>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#475569] sm:text-base">
+            <h2 className="text-xl font-bold leading-tight tracking-[-0.04em] text-[#101820] sm:text-2xl lg:text-[2rem]">Your privacy matters to us 🍪</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#475569] sm:mt-3 sm:text-base">
               Koombo uses cookies and similar technologies to improve your shopping experience, personalize content,
               understand how our platform is used, and keep our services secure. You can choose which cookies to allow.
             </p>

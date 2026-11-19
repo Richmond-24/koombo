@@ -18,7 +18,6 @@ const IMG = {
   avatar: '/koombo.jpeg',
 };
 
-/* ---------- TYPOGRAPHY ---------- */
 const STEPS = [
   {
     title: 'Create your account',
@@ -275,14 +274,10 @@ export default function ConnectorsPage() {
     <div
       id="koombo-connectors-page"
       ref={rootRef}
-      className="koombo min-h-screen overflow-x-clip bg-[#F8F8F6] text-[#20201F]"
+      className="koombo min-h-screen overflow-x-clip bg-white text-[#20201F]"
     >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap');
-
-        /* ------------------------------------------------ */
-        /* GLOBAL PAGE TYPOGRAPHY                           */
-        /* ------------------------------------------------ */
 
         #koombo-connectors-page {
           font-family: 'Lufga', 'Inter', system-ui, sans-serif;
@@ -297,25 +292,17 @@ export default function ConnectorsPage() {
           letter-spacing: -0.045em !important;
         }
 
-        /* ------------------------------------------------ */
-        /* HERO HEADING — COMPACT RESPONSIVE TYPOGRAPHY     */
-        /* ------------------------------------------------ */
-
         #koombo-connectors-page .hero-title {
           display: block !important;
           width: 100% !important;
           max-width: 100% !important;
-
           margin: 0 0 10px !important;
           padding: 0 !important;
-
           font-family: 'Lufga', 'Inter', system-ui, sans-serif !important;
           font-size: clamp(2.8rem, 4.8vw, 4.5rem) !important;
-
           font-weight: 900 !important;
           line-height: 0.98 !important;
           letter-spacing: -0.055em !important;
-
           color: #20201F !important;
           text-align: left !important;
           overflow: visible !important;
@@ -337,7 +324,6 @@ export default function ConnectorsPage() {
           width: 100% !important;
           margin: 0 !important;
           padding: 0 !important;
-
           font-family: inherit !important;
           font-size: inherit !important;
           font-weight: 900 !important;
@@ -345,7 +331,6 @@ export default function ConnectorsPage() {
           line-height: inherit !important;
         }
 
-        /* Mobile */
         @media (max-width: 639px) {
           #koombo-connectors-page .hero-title {
             font-size: clamp(2.35rem, 8vw, 3.2rem) !important;
@@ -355,7 +340,6 @@ export default function ConnectorsPage() {
           }
         }
 
-        /* Very small mobile */
         @media (max-width: 380px) {
           #koombo-connectors-page .hero-title {
             font-size: 2.15rem !important;
@@ -364,7 +348,6 @@ export default function ConnectorsPage() {
           }
         }
 
-        /* Tablet */
         @media (min-width: 640px) and (max-width: 1023px) {
           #koombo-connectors-page .hero-title {
             font-size: clamp(3rem, 5.5vw, 3.9rem) !important;
@@ -372,7 +355,6 @@ export default function ConnectorsPage() {
           }
         }
 
-        /* Desktop */
         @media (min-width: 1024px) {
           #koombo-connectors-page .hero-title {
             font-size: clamp(3.5rem, 4.8vw, 4.5rem) !important;
@@ -380,87 +362,36 @@ export default function ConnectorsPage() {
           }
         }
 
-        .koombo .canvas-dots {
-          background-image: radial-gradient(#D9D2EC 1.2px, transparent 1.2px);
-          background-size: 22px 22px;
-          mask-image: radial-gradient(ellipse at 70% 40%, black 20%, transparent 75%);
-          -webkit-mask-image: radial-gradient(ellipse at 70% 40%, black 20%, transparent 75%);
-        }
-
-        /* ------------------------------------------------ */
-        /* ANIMATIONS                                       */
-        /* ------------------------------------------------ */
-
         @keyframes k-rise {
-          from {
-            transform: translate3d(0, 110%, 0);
-          }
-          to {
-            transform: translate3d(0, 0, 0);
-          }
+          from { transform: translate3d(0, 110%, 0); }
+          to { transform: translate3d(0, 0, 0); }
         }
 
         @keyframes k-fade {
-          from {
-            opacity: 0;
-            transform: translate3d(0, 18px, 0);
-          }
-          to {
-            opacity: 1;
-            transform: translate3d(0, 0, 0);
-          }
+          from { opacity: 0; transform: translate3d(0, 18px, 0); }
+          to { opacity: 1; transform: translate3d(0, 0, 0); }
         }
 
         @keyframes k-pop {
-          from {
-            opacity: 0;
-            transform: translate3d(0, 24px, 0) scale(0.92);
-          }
-          to {
-            opacity: 1;
-            transform: translate3d(0, 0, 0) scale(1);
-          }
+          from { opacity: 0; transform: translate3d(0, 24px, 0) scale(0.92); }
+          to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
         }
 
         @keyframes k-img {
-          from {
-            opacity: 0;
-            transform: scale(1.14);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
+          from { opacity: 0; transform: scale(1.14); }
+          to { opacity: 1; transform: scale(1); }
         }
 
         @keyframes k-wipe {
-          from {
-            clip-path: inset(0 0 100% 0 round 2.5rem);
-          }
-          to {
-            clip-path: inset(0 0 0 0 round 2.5rem);
-          }
+          from { clip-path: inset(0 0 100% 0 round 2.5rem); }
+          to { clip-path: inset(0 0 0 0 round 2.5rem); }
         }
 
-        #koombo-connectors-page .k-rise {
-          animation: k-rise 1s cubic-bezier(0.22, 1, 0.36, 1) both;
-        }
-
-        #koombo-connectors-page .k-fade {
-          animation: k-fade 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-        }
-
-        #koombo-connectors-page .k-pop {
-          animation: k-pop 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-        }
-
-        #koombo-connectors-page .k-img {
-          animation: k-img 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-        }
-
-        #koombo-connectors-page .k-wipe {
-          animation: k-wipe 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
-        }
+        #koombo-connectors-page .k-rise { animation: k-rise 1s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        #koombo-connectors-page .k-fade { animation: k-fade 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        #koombo-connectors-page .k-pop { animation: k-pop 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        #koombo-connectors-page .k-img { animation: k-img 1.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        #koombo-connectors-page .k-wipe { animation: k-wipe 1.2s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
         @media (prefers-reduced-motion: reduce) {
           #koombo-connectors-page *,
@@ -478,7 +409,7 @@ export default function ConnectorsPage() {
         className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px]"
       >
         <div
-          className="h-full origin-left bg-gradient-to-r from-[#8B5CF6] to-[#4C1D95]"
+          className="h-full origin-left bg-[#4C1D95]"
           style={{ transform: 'scaleX(var(--progress, 0))' }}
         />
       </div>
@@ -487,20 +418,7 @@ export default function ConnectorsPage() {
 
       {/* HERO */}
       <section className="relative pt-[110px] sm:pt-[120px]">
-        <div
-          aria-hidden
-          className="canvas-dots pointer-events-none absolute inset-0"
-        />
-
-        <div
-          className="pointer-events-none absolute -right-40 top-0 h-[30rem] w-[30rem] rounded-full bg-[#DDD6FE]/50 blur-3xl"
-          style={{
-            transform:
-              'translate3d(0, calc(var(--scroll, 0) * 0.2px), 0)',
-          }}
-        />
-
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-20 sm:gap-16 sm:px-8 sm:pt-24 lg:grid-cols-[1.05fr_.95fr] lg:px-12 lg:pb-28 lg:pt-28">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 pb-16 pt-12 sm:gap-16 sm:px-8 sm:pb-20 sm:pt-24 lg:grid-cols-[1.05fr_.95fr] lg:px-12 lg:pb-28 lg:pt-28">
           {/* HERO TEXT */}
           <div
             className="relative z-10 min-w-0"
@@ -535,19 +453,19 @@ export default function ConnectorsPage() {
             </p>
 
             <div
-              className="k-fade mt-7 flex flex-wrap items-center gap-4 sm:mt-8"
+              className="k-fade mt-7 flex flex-wrap items-center gap-3 sm:mt-8 sm:gap-4"
               style={{ animationDelay: '580ms' }}
             >
               <a
                 href={SIGNUP_HREF}
-                className={`inline-flex items-center gap-2 rounded-full bg-[#4C1D95] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#4C1D95]/15 transition hover:bg-[#5B21B6] sm:text-lg ${focus}`}
+                className={`inline-flex items-center gap-2 rounded-full bg-[#4C1D95] px-6 py-3.5 text-base font-bold text-white transition hover:bg-[#5B21B6] sm:px-7 sm:py-4 sm:text-lg ${focus}`}
               >
                 Create free account
               </a>
 
               <a
                 href="#how"
-                className={`rounded-full px-4 py-3.5 text-base font-bold text-[#49463F] transition hover:text-[#5B21B6] sm:text-lg ${focus}`}
+                className={`rounded-full px-4 py-3 text-base font-bold text-[#49463F] transition hover:text-[#5B21B6] sm:text-lg ${focus}`}
               >
                 See how it works
               </a>
@@ -556,50 +474,42 @@ export default function ConnectorsPage() {
 
           {/* HERO IMAGE */}
           <div
-            className="relative mx-auto w-full max-w-xl lg:ml-auto"
+            className="relative mx-auto w-full max-w-xl pb-8 lg:ml-auto lg:pb-0"
             style={{
               transform:
                 'translate3d(0, calc(var(--scroll, 0) * -0.04px), 0)',
             }}
           >
             <div
-              className="k-wipe relative overflow-hidden rounded-[2.5rem] bg-[#24133F] p-3 shadow-[0_30px_100px_rgba(36,19,63,0.18)] sm:p-4"
+              className="k-wipe relative overflow-hidden rounded-[2rem] bg-[#24133F] p-2.5 sm:rounded-[2.5rem] sm:p-4"
               style={{ animationDelay: '150ms' }}
             >
-              <div className="relative overflow-hidden rounded-[2rem] bg-[#3B1B73]">
+              <div className="relative overflow-hidden rounded-[1.5rem] bg-[#3B1B73] sm:rounded-[2rem]">
                 <img
                   src={IMG.hero}
                   alt="A connector smiling while checking her referral earnings"
-                  className="k-img h-[300px] w-full object-cover sm:h-[520px]"
+                  className="k-img h-[280px] w-full object-cover sm:h-[520px]"
                   style={{ animationDelay: '150ms' }}
                 />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-[#170D29]/70 via-transparent to-transparent" />
               </div>
             </div>
 
             {/* REFERRAL LINK CARD */}
-            <div
-              className="absolute -left-3 top-10 w-56 sm:-left-12 sm:w-60"
-              style={{
-                transform:
-                  'translate3d(0, calc(var(--scroll, 0) * -0.1px), 0)',
-              }}
-            >
+            <div className="absolute left-2 top-6 w-48 sm:-left-12 sm:top-10 sm:w-60">
               <div
-                className="k-pop rounded-2xl border border-white/60 bg-white/90 p-3.5 shadow-xl backdrop-blur"
+                className="k-pop rounded-2xl border border-[#EAE8E3] bg-white p-3 shadow-lg sm:p-3.5"
                 style={{ animationDelay: '800ms' }}
               >
                 <p className="text-xs font-bold text-[#77736D]">
                   Your referral link
                 </p>
 
-                <div className="mt-1.5 flex items-center justify-between rounded-xl bg-[#24133F] px-3.5 py-2.5 text-white">
-                  <span className="text-sm font-black tracking-[0.08em]">
+                <div className="mt-1.5 flex items-center justify-between gap-2 rounded-xl bg-[#24133F] px-3 py-2 text-white sm:px-3.5 sm:py-2.5">
+                  <span className="truncate text-xs font-black tracking-[0.04em] sm:text-sm sm:tracking-[0.08em]">
                     koombo.com/ama
                   </span>
 
-                  <span className="rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-bold">
+                  <span className="shrink-0 rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-bold">
                     Copy
                   </span>
                 </div>
@@ -607,21 +517,15 @@ export default function ConnectorsPage() {
             </div>
 
             {/* SALE NOTIFICATION */}
-            <div
-              className="absolute -bottom-7 right-4 w-64 sm:-right-8"
-              style={{
-                transform:
-                  'translate3d(0, calc(var(--scroll, 0) * 0.06px), 0)',
-              }}
-            >
+            <div className="absolute -bottom-0 right-2 w-[15rem] max-w-[calc(100%-1rem)] sm:-bottom-7 sm:-right-8 sm:w-64">
               <div
-                className="k-pop flex items-center gap-3 rounded-2xl border border-white/60 bg-white/90 p-3.5 shadow-xl backdrop-blur"
+                className="k-pop flex items-center gap-3 rounded-2xl border border-[#EAE8E3] bg-white p-3 shadow-lg sm:p-3.5"
                 style={{ animationDelay: '1000ms' }}
               >
                 <img
                   src={IMG.avatar}
                   alt=""
-                  className="h-11 w-11 shrink-0 rounded-full object-cover"
+                  className="h-10 w-10 shrink-0 rounded-full object-cover sm:h-11 sm:w-11"
                 />
 
                 <div className="min-w-0">
@@ -630,8 +534,8 @@ export default function ConnectorsPage() {
                   </p>
 
                   <p className="flex items-center gap-1.5 text-xs font-semibold text-[#047857]">
-                    <span className="h-2 w-2 rounded-full bg-[#10B981]" />
-                    You earned {money(25.5)}
+                    <span className="h-2 w-2 shrink-0 rounded-full bg-[#10B981]" />
+                    <span className="truncate">You earned {money(25.5)}</span>
                   </p>
                 </div>
               </div>
@@ -641,25 +545,23 @@ export default function ConnectorsPage() {
       </section>
 
       {/* COMMISSION BANNER */}
-      <section className="px-5 pb-16 sm:px-8 sm:pb-24">
+      <section className="px-5 pb-14 sm:px-8 sm:pb-24">
         <Reveal y={60} scale={0.96}>
-          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[1.75rem] bg-[#1B0E33] px-5 py-8 text-white shadow-[0_24px_60px_-24px_rgba(76,29,149,0.7)] sm:rounded-[2.25rem] sm:px-12 sm:py-12">
-            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#6D28D9]/40 blur-3xl" />
-
-            <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
+          <div className="mx-auto max-w-5xl overflow-hidden rounded-[1.5rem] bg-[#1B0E33] px-5 py-7 text-white sm:rounded-[2.25rem] sm:px-12 sm:py-12">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
               <div className="flex items-center gap-4 sm:gap-6">
-                <span className="bg-gradient-to-b from-white to-[#C4B5FD] bg-clip-text text-7xl font-black leading-none tracking-[-0.06em] text-transparent sm:text-8xl">
+                <span className="shrink-0 text-6xl font-black leading-none tracking-[-0.06em] text-white sm:text-8xl">
                   <CountUp to={COMMISSION_RATE} />%
                 </span>
 
-                <p className="text-xl font-extrabold leading-snug tracking-[-0.02em] sm:max-w-xs sm:text-2xl lg:text-3xl">
+                <p className="text-lg font-extrabold leading-snug tracking-[-0.02em] sm:max-w-xs sm:text-2xl lg:text-3xl">
                   commission on all sales made using your link
                 </p>
               </div>
 
               <a
                 href={SIGNUP_HREF}
-                className={`inline-flex w-full items-center justify-center rounded-full bg-white px-7 py-4 text-base font-bold text-[#24133F] transition hover:bg-[#EDE9FE] sm:w-auto sm:text-lg ${focus}`}
+                className={`inline-flex w-full items-center justify-center rounded-full bg-white px-7 py-3.5 text-base font-bold text-[#24133F] transition hover:bg-[#EDE9FE] sm:w-auto sm:py-4 sm:text-lg ${focus}`}
               >
                 Start earning
               </a>
@@ -672,14 +574,14 @@ export default function ConnectorsPage() {
       <section
         id="how"
         ref={howRef}
-        className="scroll-mt-20 border-y border-[#EAE8E3] bg-white py-20 sm:py-24"
+        className="scroll-mt-20 border-y border-[#EAE8E3] bg-white py-16 sm:py-24"
       >
         <div className="mx-auto max-w-5xl px-5 sm:px-8 lg:px-12">
           <Reveal>
             <h2
               className="heading-font text-center"
               style={{
-                fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
+                fontSize: 'clamp(1.75rem, 4.5vw, 3.5rem)',
                 lineHeight: 1.12,
               }}
             >
@@ -687,15 +589,15 @@ export default function ConnectorsPage() {
             </h2>
           </Reveal>
 
-          <ol className="relative mt-14 grid gap-8 sm:grid-cols-3 sm:gap-6">
+          <ol className="relative mt-10 grid gap-5 sm:mt-14 sm:grid-cols-3 sm:gap-6">
             <div
               aria-hidden
               className="absolute left-[16.6%] right-[16.6%] top-4 hidden sm:block"
             >
-              <div className="border-t-2 border-dashed border-[#E4DDF5]" />
+              <div className="border-t-2 border-dashed border-[#E4E2DC]" />
 
               <div
-                className="absolute inset-x-0 top-0 h-[2px] origin-left bg-gradient-to-r from-[#8B5CF6] to-[#4C1D95]"
+                className="absolute inset-x-0 top-0 h-[2px] origin-left bg-[#4C1D95]"
                 style={{ transform: 'scaleX(var(--hiw, 0))' }}
               />
             </div>
@@ -712,12 +614,12 @@ export default function ConnectorsPage() {
                   {i + 1}
                 </span>
 
-                <div className="mt-6 rounded-[1.5rem] border border-[#E4DFF2] bg-[#F7F5FC] p-6 sm:p-7">
-                  <h3 className="text-xl font-extrabold text-[#24133F] sm:text-2xl">
+                <div className="mt-4 rounded-2xl border border-[#EAE8E3] bg-[#F8F8F6] p-5 sm:mt-6 sm:rounded-[1.5rem] sm:p-7">
+                  <h3 className="text-lg font-extrabold text-[#24133F] sm:text-2xl">
                     {s.title}
                   </h3>
 
-                  <p className="mt-3 text-base leading-8 text-[#686760] sm:text-lg">
+                  <p className="mt-2 text-[15px] leading-7 text-[#686760] sm:mt-3 sm:text-lg sm:leading-8">
                     {s.body}
                   </p>
                 </div>
@@ -728,13 +630,13 @@ export default function ConnectorsPage() {
       </section>
 
       {/* TWO WAYS TO EARN */}
-      <section className="py-20 sm:py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
           <Reveal>
             <h2
               className="heading-font max-w-2xl"
               style={{
-                fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
+                fontSize: 'clamp(1.75rem, 4.5vw, 3.5rem)',
                 lineHeight: 1.12,
               }}
             >
@@ -742,7 +644,7 @@ export default function ConnectorsPage() {
             </h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <div className="mt-8 grid gap-5 sm:mt-10 md:grid-cols-2">
             {PATHS.map((t, i) => {
               const dark = i === 0;
 
@@ -755,33 +657,27 @@ export default function ConnectorsPage() {
                   delay={i * 150}
                 >
                   <div
-                    className={`relative h-full overflow-hidden rounded-[1.75rem] p-1.5 ${
+                    className={`h-full overflow-hidden rounded-[1.5rem] p-3 sm:rounded-[1.75rem] sm:p-5 ${
                       dark
-                        ? 'bg-[#24133F] shadow-[0_24px_60px_-24px_rgba(36,19,63,0.6)]'
-                        : 'border border-[#E4DFF2] bg-white shadow-[0_16px_40px_-24px_rgba(76,29,149,0.35)]'
+                        ? 'bg-[#24133F] text-white'
+                        : 'border border-[#EAE8E3] bg-[#F8F8F6]'
                     }`}
                   >
-                    <div
-                      className={`relative h-full overflow-hidden rounded-[1.4rem] p-4 sm:p-7 ${
-                        dark
-                          ? 'border border-white/10 bg-gradient-to-br from-[#3B1B73] via-[#2B1650] to-[#1B0E33] text-white'
-                          : 'bg-gradient-to-br from-[#F7F5FC] to-[#EDE9FE]/70'
-                      }`}
-                    >
-                      <div className="group relative overflow-hidden rounded-2xl bg-[#3B1B73]">
-                        <img
-                          src={t.image}
-                          alt={t.alt}
-                          className="h-48 w-full object-cover transition-transform duration-700 group-hover:scale-105 sm:h-64"
-                        />
+                    <div className="group relative overflow-hidden rounded-2xl bg-[#3B1B73]">
+                      <img
+                        src={t.image}
+                        alt={t.alt}
+                        className="h-44 w-full object-cover transition-transform duration-700 group-hover:scale-105 sm:h-64"
+                      />
 
-                        <span className="absolute left-3 top-3 rounded-full bg-white/95 px-4 py-2 text-sm font-bold text-[#4C1D95] backdrop-blur">
-                          {t.tagline}
-                        </span>
-                      </div>
+                      <span className="absolute left-2.5 top-2.5 max-w-[calc(100%-1.25rem)] rounded-full bg-white px-3 py-1.5 text-xs font-bold text-[#4C1D95] sm:left-3 sm:top-3 sm:px-4 sm:py-2 sm:text-sm">
+                        {t.tagline}
+                      </span>
+                    </div>
 
+                    <div className="px-1.5 pb-2 pt-5 sm:px-2 sm:pt-6">
                       <h3
-                        className={`mt-6 text-2xl font-black tracking-[-0.03em] sm:text-3xl lg:text-4xl ${
+                        className={`text-2xl font-black tracking-[-0.03em] sm:text-3xl lg:text-4xl ${
                           dark ? '' : 'text-[#24133F]'
                         }`}
                       >
@@ -789,7 +685,7 @@ export default function ConnectorsPage() {
                       </h3>
 
                       <p
-                        className={`mt-3 max-w-md text-base leading-8 sm:text-lg ${
+                        className={`mt-2.5 max-w-md text-[15px] leading-7 sm:mt-3 sm:text-lg sm:leading-8 ${
                           dark ? 'text-white/75' : 'text-[#686760]'
                         }`}
                       >
@@ -798,7 +694,7 @@ export default function ConnectorsPage() {
 
                       <a
                         href={`${SIGNUP_HREF}?type=${t.key}`}
-                        className={`mt-6 inline-flex items-center rounded-full px-7 py-4 text-base font-bold transition sm:text-lg ${focus} ${
+                        className={`mt-5 inline-flex w-full items-center justify-center rounded-full px-6 py-3.5 text-base font-bold transition sm:mt-6 sm:w-auto sm:px-7 sm:py-4 sm:text-lg ${focus} ${
                           dark
                             ? 'bg-white text-[#24133F] hover:bg-[#EDE9FE]'
                             : 'bg-[#4C1D95] text-white hover:bg-[#5B21B6]'
@@ -816,33 +712,27 @@ export default function ConnectorsPage() {
       </section>
 
       {/* WITHDRAWAL INFORMATION */}
-      <section className="bg-[#F3F0FA] py-20 sm:py-24">
+      <section className="border-t border-[#EAE8E3] bg-white py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
           <Reveal>
-            <div className="relative overflow-hidden rounded-[2.5rem] border border-[#E4DFF2] bg-white p-7 shadow-sm sm:p-12 lg:p-16">
-              <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#6D28D9]/5 blur-3xl" />
-
-              <div className="relative flex flex-col items-center gap-10 lg:flex-row lg:gap-16">
-                <div className="flex-1 text-center lg:text-left">
-                  <span className="mb-5 inline-block rounded-full bg-[#EDE9FE] px-5 py-2 text-sm font-bold uppercase tracking-wider text-[#6D28D9]">
+            <div className="overflow-hidden rounded-[1.75rem] border border-[#EAE8E3] bg-[#F8F8F6] p-5 sm:rounded-[2.5rem] sm:p-12 lg:p-16">
+              <div className="flex flex-col items-stretch gap-8 lg:flex-row lg:items-center lg:gap-16">
+                <div className="text-left lg:flex-1">
+                  <span className="mb-4 inline-block rounded-full bg-[#EDE9FE] px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#6D28D9] sm:mb-5 sm:px-5 sm:py-2 sm:text-sm">
                     Easy Payouts
                   </span>
 
                   <h2
                     className="heading-font text-[#24133F]"
                     style={{
-                      fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
+                      fontSize: 'clamp(1.75rem, 4.5vw, 3.5rem)',
                       lineHeight: 1.12,
                     }}
                   >
-                    Get paid instantly to
-                    <br className="hidden lg:block" />
-                    <span className="text-[#6D28D9]">
-                      Mobile Money.
-                    </span>
+                    Get paid instantly.
                   </h2>
 
-                  <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-[#686760] sm:text-lg lg:mx-0 lg:text-xl">
+                  <p className="mt-4 max-w-xl text-[15px] leading-7 text-[#686760] sm:mt-6 sm:text-lg sm:leading-8 lg:text-xl">
                     Once your earnings hit just{' '}
                     <span className="font-bold text-[#24133F]">
                       GH₵ 100
@@ -851,23 +741,23 @@ export default function ConnectorsPage() {
                     Cash wallet. No bank accounts needed, no long waits.
                   </p>
 
-                  <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
-                    <div className="flex items-center gap-3 rounded-xl border border-[#EAE8E3] bg-[#F8F8F6] px-5 py-4">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FFCC00] text-xs font-black text-black">
+                  <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:flex sm:flex-wrap sm:gap-4">
+                    <div className="flex items-center gap-2.5 rounded-xl border border-[#EAE8E3] bg-white px-3 py-3 sm:gap-3 sm:px-5 sm:py-4">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FFCC00] text-[10px] font-black text-black sm:h-9 sm:w-9 sm:text-xs">
                         MTN
                       </div>
 
-                      <span className="text-base font-bold text-[#24133F] sm:text-lg">
+                      <span className="text-sm font-bold text-[#24133F] sm:text-lg">
                         MTN MoMo
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-3 rounded-xl border border-[#EAE8E3] bg-[#F8F8F6] px-5 py-4">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#E60000] text-xs font-black text-white">
+                    <div className="flex items-center gap-2.5 rounded-xl border border-[#EAE8E3] bg-white px-3 py-3 sm:gap-3 sm:px-5 sm:py-4">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E60000] text-[10px] font-black text-white sm:h-9 sm:w-9 sm:text-xs">
                         TEL
                       </div>
 
-                      <span className="text-base font-bold text-[#24133F] sm:text-lg">
+                      <span className="text-sm font-bold text-[#24133F] sm:text-lg">
                         Telecel Cash
                       </span>
                     </div>
@@ -875,23 +765,23 @@ export default function ConnectorsPage() {
                 </div>
 
                 {/* BALANCE CARD */}
-                <div className="w-full max-w-md flex-1 lg:max-w-none">
-                  <div className="relative flex aspect-[4/3] flex-col justify-between rounded-2xl bg-gradient-to-br from-[#24133F] to-[#4C1D95] p-6 text-white shadow-xl sm:p-8">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <p className="text-sm font-bold uppercase tracking-widest opacity-70">
+                <div className="w-full lg:flex-1">
+                  <div className="flex w-full flex-col gap-6 rounded-2xl bg-[#24133F] p-5 text-white sm:aspect-[4/3] sm:justify-between sm:p-8">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-xs font-bold uppercase tracking-widest opacity-70 sm:text-sm">
                           Available Balance
                         </p>
 
-                        <p className="mt-2 text-4xl font-black sm:text-5xl">
+                        <p className="mt-1.5 text-3xl font-black sm:mt-2 sm:text-5xl">
                           GH₵ 125.50
                         </p>
                       </div>
 
-                      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 sm:h-11 sm:w-11">
                         <svg
-                          width="22"
-                          height="22"
+                          width="20"
+                          height="20"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
@@ -902,13 +792,13 @@ export default function ConnectorsPage() {
                       </div>
                     </div>
 
-                    <div className="space-y-4">
-                      <div className="flex h-14 items-center gap-3 rounded-xl bg-white/10 px-4">
-                        <div className="h-7 w-7 rounded-full bg-[#FFCC00]" />
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="flex h-12 items-center gap-3 rounded-xl bg-white/10 px-4 sm:h-14">
+                        <div className="h-6 w-6 shrink-0 rounded-full bg-[#FFCC00] sm:h-7 sm:w-7" />
                         <div className="h-2 flex-1 rounded-full bg-white/20" />
                       </div>
 
-                      <button className="w-full rounded-xl bg-white py-4 text-base font-bold text-[#24133F] shadow-lg transition hover:bg-[#EDE9FE] sm:text-lg">
+                      <button className="w-full rounded-xl bg-white py-3.5 text-base font-bold text-[#24133F] transition hover:bg-[#EDE9FE] sm:py-4 sm:text-lg">
                         Withdraw Now
                       </button>
                     </div>
@@ -921,13 +811,13 @@ export default function ConnectorsPage() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-[#EAE8E3] bg-white py-20 sm:py-24">
+      <section className="border-t border-[#EAE8E3] bg-white py-16 sm:py-24">
         <div className="mx-auto max-w-3xl px-5 sm:px-8">
           <Reveal>
             <h2
               className="heading-font"
               style={{
-                fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
+                fontSize: 'clamp(1.75rem, 4.5vw, 3.5rem)',
                 lineHeight: 1.12,
               }}
             >
@@ -935,7 +825,7 @@ export default function ConnectorsPage() {
             </h2>
           </Reveal>
 
-          <Reveal delay={100} className="mt-8">
+          <Reveal delay={100} className="mt-6 sm:mt-8">
             <div className="divide-y divide-[#E7E5E0] border-y border-[#E7E5E0]">
               {FAQ.map(([q, a], i) => {
                 const open = openFaq === i;
@@ -946,15 +836,15 @@ export default function ConnectorsPage() {
                       type="button"
                       onClick={() => setOpenFaq(open ? -1 : i)}
                       aria-expanded={open}
-                      className={`flex w-full items-center justify-between gap-6 py-6 text-left text-base font-bold text-[#24133F] sm:text-xl ${focus}`}
+                      className={`flex w-full items-center justify-between gap-4 py-5 text-left text-base font-bold text-[#24133F] sm:gap-6 sm:py-6 sm:text-xl ${focus}`}
                     >
                       {q}
 
                       <span
-                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-transform ${
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-transform sm:h-9 sm:w-9 ${
                           open
                             ? 'rotate-45 bg-[#EDE9FE] text-[#4C1D95]'
-                            : 'bg-white ring-1 ring-[#E4DFF2]'
+                            : 'bg-white ring-1 ring-[#E4E2DC]'
                         }`}
                       >
                         <svg
@@ -973,7 +863,7 @@ export default function ConnectorsPage() {
                     </button>
 
                     {open && (
-                      <p className="k-fade pb-7 pr-12 text-base leading-8 text-[#686760] sm:text-lg">
+                      <p className="k-fade pb-6 pr-6 text-[15px] leading-7 text-[#686760] sm:pb-7 sm:pr-12 sm:text-lg sm:leading-8">
                         {a}
                       </p>
                     )}
@@ -986,25 +876,23 @@ export default function ConnectorsPage() {
       </section>
 
       {/* CLOSING CTA */}
-      <section id="join" className="scroll-mt-20 py-20 sm:py-24">
+      <section id="join" className="scroll-mt-20 py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
           <Reveal y={60} scale={0.96}>
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-[#24133F] px-7 py-12 text-white sm:px-14 sm:py-16">
-              <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[#6D28D9]/40 blur-3xl" />
-
-              <div className="relative flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
+            <div className="overflow-hidden rounded-[1.75rem] bg-[#24133F] px-5 py-10 text-white sm:rounded-[2.5rem] sm:px-14 sm:py-16">
+              <div className="flex flex-col items-start justify-between gap-7 lg:flex-row lg:items-center lg:gap-8">
                 <div>
                   <h2
                     className="heading-font max-w-xl"
                     style={{
-                      fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
+                      fontSize: 'clamp(1.75rem, 4.5vw, 3.5rem)',
                       lineHeight: 1.12,
                     }}
                   >
                     Create an account. Start earning.
                   </h2>
 
-                  <p className="mt-5 text-base text-white/75 sm:text-lg">
+                  <p className="mt-4 text-[15px] text-white/75 sm:mt-5 sm:text-lg">
                     Already have an account?{' '}
                     <a
                       href={LOGIN_HREF}
@@ -1017,7 +905,7 @@ export default function ConnectorsPage() {
 
                 <a
                   href={SIGNUP_HREF}
-                  className={`inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-base font-bold text-[#24133F] transition hover:bg-[#EDE9FE] sm:text-lg ${focus}`}
+                  className={`inline-flex w-full items-center justify-center rounded-full bg-white px-8 py-3.5 text-base font-bold text-[#24133F] transition hover:bg-[#EDE9FE] sm:w-auto sm:py-4 sm:text-lg ${focus}`}
                 >
                   Create free account
                 </a>

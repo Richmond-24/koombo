@@ -104,8 +104,162 @@ function BrandMarquee() {
   );
 }
 
+/* ============ SELLER SETUP INTRO (Figma-style welcome screen) ============ */
+function SellerIntro({ onStart }: { onStart: () => void }) {
+  const perks = ["Free to join", "Takes about 2 minutes", "Go live today"];
+
+  return (
+    <section className="px-4 pb-14 pt-[104px] sm:px-6 sm:pt-[116px] lg:pb-20">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 rounded-[28px] border border-[#E4DFF0] bg-white p-5 shadow-[0_30px_80px_-40px_rgba(36,19,63,0.35)] sm:gap-12 sm:rounded-[36px] sm:p-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 lg:p-14">
+        {/* ---------- TEXT SIDE ---------- */}
+        <div className="text-center lg:text-left">
+          <p className="animate-fade-in-up inline-flex items-center gap-2 rounded-full bg-[#F3EFFF] px-4 py-2 text-xs font-bold text-[#5B21B6] sm:text-sm">
+            <Icons.Sparkles /> First time on Koombo
+          </p>
+
+          <h1
+            className="animate-fade-in-up mt-5 text-[2.15rem] font-extrabold leading-[1.08] tracking-[-0.04em] text-[#12161C] min-[400px]:text-[2.4rem] sm:text-5xl lg:text-[3.4rem]"
+            style={{ fontFamily: "'DM Sans', 'Inter', sans-serif", animationDelay: ".08s", opacity: 0 }}
+          >
+            Set up your seller account
+          </h1>
+
+          <p
+            className="animate-fade-in-up mx-auto mt-4 max-w-md text-[15px] leading-7 text-slate-500 sm:text-lg sm:leading-8 lg:mx-0"
+            style={{ animationDelay: ".16s", opacity: 0 }}
+          >
+            New to Koombo? Tell us about you and your shop, connect Telegram for buyer chats, and you are ready to start selling.
+          </p>
+
+          <div className="animate-fade-in-up mt-7 sm:mt-9" style={{ animationDelay: ".24s", opacity: 0 }}>
+            <button
+              type="button"
+              onClick={onStart}
+              className="group inline-flex h-14 w-full max-w-sm items-center justify-center gap-2 rounded-2xl bg-[#5B21B6] px-10 text-lg font-bold text-white shadow-lg shadow-[#5B21B6]/30 transition-all hover:-translate-y-0.5 hover:bg-[#4C1D95] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#5B21B6]/30 active:scale-[0.98] sm:w-auto"
+            >
+              Start
+              <span className="transition-transform duration-200 group-hover:translate-x-1"><Icons.ChevronRight /></span>
+            </button>
+          </div>
+
+          <ul
+            className="animate-fade-in-up mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-semibold text-slate-500 lg:justify-start"
+            style={{ animationDelay: ".32s", opacity: 0 }}
+          >
+            {perks.map((p) => (
+              <li key={p} className="inline-flex items-center gap-1.5">
+                <span className="grid h-5 w-5 place-items-center rounded-full bg-[#F3EFFF] text-[#5B21B6]"><Icons.Check /></span>
+                {p}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* ---------- FIGMA-STYLE DESIGN FRAME ---------- */}
+        <div className="animate-fade-in-up relative mx-auto w-full max-w-[420px] pb-6 pt-8" style={{ animationDelay: ".2s", opacity: 0 }} aria-hidden="true">
+          {/* frame name tag, like the label above a Figma frame */}
+          <span className="absolute left-0 top-0 rounded-md bg-[#5B21B6] px-2.5 py-1 text-[11px] font-semibold text-white">
+            Seller setup
+          </span>
+
+          {/* selection box with corner handles */}
+          <div className="relative rounded-[22px] border-[1.5px] border-[#5B21B6] p-2.5 sm:p-3">
+            {["-left-1.5 -top-1.5", "-right-1.5 -top-1.5", "-bottom-1.5 -left-1.5", "-bottom-1.5 -right-1.5"].map((pos) => (
+              <span key={pos} className={`absolute ${pos} h-2.5 w-2.5 rounded-[2px] border-[1.5px] border-[#5B21B6] bg-white`} />
+            ))}
+
+            <div className="overflow-hidden rounded-[16px] bg-[#F7F5FD] ring-1 ring-[#E4DFF0]">
+              {/* window bar */}
+              <div className="flex items-center justify-between bg-[#24133F] px-4 py-3">
+                <span className="flex gap-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/30" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/30" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/30" />
+                </span>
+                <span className="text-[11px] font-semibold text-white/70">Step 1 of 7</span>
+              </div>
+
+              <div className="space-y-3 p-4 sm:p-5">
+                {/* progress */}
+                <div className="flex gap-1.5">
+                  <span className="h-1.5 flex-[2] rounded-full bg-[#5B21B6]" />
+                  <span className="h-1.5 flex-1 rounded-full bg-[#DDD6F3]" />
+                  <span className="h-1.5 flex-1 rounded-full bg-[#DDD6F3]" />
+                </div>
+
+                {/* profile card */}
+                <div className="flex items-center gap-3 rounded-2xl bg-white p-3 ring-1 ring-[#E4DFF0]">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[#F3EFFF] text-[#5B21B6]"><Icons.User /></span>
+                  <div className="min-w-0 flex-1 space-y-1.5">
+                    <span className="block h-2.5 w-3/4 rounded-full bg-[#12161C]/80" />
+                    <span className="block h-2 w-1/2 rounded-full bg-[#DDD6F3]" />
+                  </div>
+                  <span className="rounded-full bg-[#F3EFFF] px-2.5 py-1 text-[10px] font-bold text-[#5B21B6]">You</span>
+                </div>
+
+                {/* business field */}
+                <div className="rounded-2xl bg-white p-3 ring-1 ring-[#E4DFF0]">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Business name</p>
+                  <div className="mt-1.5 flex items-center gap-2 rounded-lg border border-[#5B21B6]/40 bg-[#F7F5FD] px-3 py-2.5">
+                    <span className="text-[#5B21B6]"><Icons.Store /></span>
+                    <span className="truncate text-sm font-semibold text-[#12161C]">{"Richy's Fashion"}</span>
+                    <span className="ml-auto h-4 w-px animate-pulse bg-[#5B21B6]" />
+                  </div>
+                </div>
+
+                {/* telegram row */}
+                <div className="flex items-center gap-3 rounded-2xl bg-white p-3 ring-1 ring-[#E4DFF0]">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[#0088cc] text-white"><Icons.Telegram /></span>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-extrabold text-[#12161C]">Telegram</p>
+                    <p className="text-[11px] text-slate-400">Buyer chats and alerts</p>
+                  </div>
+                  <span className="rounded-lg border border-[#5B21B6]/30 px-3 py-1.5 text-[11px] font-bold text-[#5B21B6]">Connect</span>
+                </div>
+
+                {/* fake continue button */}
+                <div className="rounded-xl bg-[#5B21B6] py-3 text-center text-sm font-bold text-white">Continue</div>
+              </div>
+            </div>
+          </div>
+
+          {/* floating chips */}
+          <div className="animate-gentle-bounce absolute -right-1 top-14 sm:-right-5">
+            <div className="flex items-center gap-2 rounded-2xl bg-white px-3 py-2.5 shadow-[0_14px_30px_-10px_rgba(36,19,63,0.4)] ring-1 ring-[#E4DFF0]">
+              <span className="grid h-8 w-8 place-items-center rounded-xl bg-[#5B21B6] text-white"><Icons.Sparkles /></span>
+              <span className="leading-tight">
+                <span className="block text-[10px] font-bold uppercase tracking-wider text-[#5B21B6]">Shuri AI</span>
+                <span className="block text-xs font-extrabold text-[#12161C]">Listing ready</span>
+              </span>
+            </div>
+          </div>
+
+          <div className="animate-gentle-bounce absolute -left-1 bottom-16 sm:-left-5" style={{ animationDelay: "1s" }}>
+            <div className="flex items-center gap-2 rounded-2xl bg-white px-3 py-2.5 shadow-[0_14px_30px_-10px_rgba(36,19,63,0.4)] ring-1 ring-[#E4DFF0]">
+              <span className="grid h-8 w-8 place-items-center rounded-xl bg-[#0088cc] text-white"><Icons.Telegram /></span>
+              <span className="leading-tight">
+                <span className="block text-[10px] font-bold uppercase tracking-wider text-[#0088cc]">Instant</span>
+                <span className="block text-xs font-extrabold text-[#12161C]">Order alert</span>
+              </span>
+            </div>
+          </div>
+
+          {/* Figma-style cursor with name tag */}
+          <div className="animate-cursor absolute bottom-0 right-6 sm:right-2">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#5B21B6" stroke="#fff" strokeWidth="1.6" strokeLinejoin="round">
+              <path d="M4 3l16 7.5-7 2.5-2.5 7L4 3z" />
+            </svg>
+            <span className="-mt-1 ml-4 inline-block rounded-md rounded-tl-none bg-[#5B21B6] px-2 py-0.5 text-[10px] font-semibold text-white">New seller</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ============ MAIN ============ */
 export default function TelegramListPage() {
+  const [showIntro, setShowIntro] = useState(true);
   const [step, setStep] = useState(1);
   const [subStep, setSubStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -271,6 +425,10 @@ export default function TelegramListPage() {
   };
 
   const handleStart = () => { setStep(1); setSubStep(1); setError(""); window.scrollTo({ top: 0, behavior: "smooth" }); };
+
+  // "Start" on the welcome screen: hide the intro and open the real setup form.
+  const handleBeginSetup = () => { setShowIntro(false); handleStart(); };
+
   const goBack = () => { if (subStep > 1) setSubStep((p) => p - 1); setError(""); };
 
   const canProceedSubStep = () => {
@@ -347,6 +505,7 @@ export default function TelegramListPage() {
         @keyframes fade-in-up { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
         @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-33.33%)} }
         @keyframes hdr { from{transform:translateY(-100%)} to{transform:none} }
+        @keyframes cursor-move { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-12px,-10px)} }
         .animate-gentle-bounce { animation: gentle-bounce 3s infinite ease-in-out; }
         .animate-bubble-fade { animation: bubble-fade 6s infinite ease-in-out; }
         .animate-ping-slow { animation: ping-slow 2s cubic-bezier(0,0,.2,1) infinite; }
@@ -354,12 +513,17 @@ export default function TelegramListPage() {
         .animate-marquee { animation: marquee 25s linear infinite; }
         .animate-marquee:hover { animation-play-state: paused; }
         .animate-hdr { animation: hdr .6s ease-out; }
+        .animate-cursor { animation: cursor-move 3.5s ease-in-out infinite; }
         @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; } }
       `}</style>
 
       <SiteHeader ctaLabel="Become a Vendor" />
+
+      {/* WELCOME SCREEN: shown first, the Start button opens the real setup form */}
+      {showIntro && <SellerIntro onStart={handleBeginSetup} />}
+
       {/* LANDING */}
-      {step === 0 && (
+      {!showIntro && step === 0 && (
         <div className="pt-[76px]">
 
           <BrandMarquee />
@@ -438,9 +602,9 @@ export default function TelegramListPage() {
         </div>
       )}
 
-      {step === 1 && renderProgress()}
+      {!showIntro && step === 1 && renderProgress()}
 
-      {step === 1 && error && (
+      {!showIntro && step === 1 && error && (
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
           <div className="rounded-2xl border border-red-100 bg-red-50 px-5 py-4 text-sm font-medium text-red-700 flex items-start gap-3">
             <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0 mt-1.5" /><span>{error}</span>
@@ -449,7 +613,7 @@ export default function TelegramListPage() {
       )}
 
       {/* STEP 1 */}
-      {step === 1 && (
+      {!showIntro && step === 1 && (
         <main className="pb-16 px-4 sm:px-6">
           <FadeIn className="max-w-2xl mx-auto" key={`step-${subStep}`}>
             <div className="bg-white rounded-3xl shadow-2xl shadow-slate-200/60 border border-slate-200 overflow-hidden">

@@ -372,7 +372,7 @@ export default function KoomboHero({ onSignIn, onSignUp, onSearch, onExplore, on
   const content = CONTENT[mode];
 
   return (
-    <section className="relative min-h-screen w-full overflow-x-clip bg-[#F7F7F5] text-[#101820]">
+    <section className="koombo-hero relative min-h-screen w-full overflow-x-clip bg-[#F7F7F5] text-[#101820]">
       <style>{`
         html { scroll-behavior: smooth; scroll-padding-top: 100px; }
         .koombo-nav-link { position: relative; display: inline-flex; align-items: center; gap: 8px; padding: 5px 0; color: #101820; transition: color .25s ease; }
@@ -385,6 +385,31 @@ export default function KoomboHero({ onSignIn, onSignUp, onSearch, onExplore, on
         .koombo-mobile-panel { animation: koomboSlide .3s cubic-bezier(.16,1,.3,1) both; }
         @keyframes koomboFade { from { opacity: 0; } to { opacity: 1; } }
         @keyframes koomboSlide { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+
+        /* ---------- Hero text sizing (overrides global kb-* classes) ---------- */
+        .koombo-hero .kb-hero-title {
+          font-size: clamp(1.9rem, 8.2vw, 2.4rem) !important;
+          line-height: 1.12 !important;
+          letter-spacing: -0.035em !important;
+          font-weight: 800 !important;
+          text-wrap: balance;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .koombo-hero .kb-body-copy {
+          font-size: 0.95rem !important;
+          line-height: 1.6 !important;
+          text-wrap: pretty;
+        }
+        @media (min-width: 640px) {
+          .koombo-hero .kb-hero-title { font-size: clamp(2.75rem, 6vw, 3.6rem) !important; line-height: 1.08 !important; }
+          .koombo-hero .kb-body-copy { font-size: 1.05rem !important; line-height: 1.7 !important; }
+        }
+        @media (min-width: 1024px) {
+          .koombo-hero .kb-hero-title { font-size: clamp(3.4rem, 5vw, 4.5rem) !important; line-height: 1.05 !important; }
+          .koombo-hero .kb-body-copy { font-size: 1.15rem !important; }
+        }
+
         @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
       `}</style>
 
@@ -416,15 +441,25 @@ export default function KoomboHero({ onSignIn, onSignUp, onSearch, onExplore, on
 
       {/* HERO BODY */}
       <main id="home" className="px-2 pb-4 pt-[104px] sm:px-4 sm:pb-8 sm:pt-[118px] lg:pt-[122px]">
-        <section className="mx-auto max-w-[1440px] overflow-hidden rounded-[20px] bg-[#4C1D95] px-2 pb-1 pt-5 sm:rounded-[28px] sm:px-8 sm:pb-7 sm:pt-10 lg:px-12 lg:pb-8 lg:pt-12">
+        <section className="mx-auto max-w-[1440px] overflow-hidden rounded-[20px] bg-[#4C1D95] px-2 pb-2 pt-7 sm:rounded-[28px] sm:px-8 sm:pb-7 sm:pt-10 lg:px-12 lg:pb-8 lg:pt-12">
 
           {/* Shop / Sell toggle */}
           <Reveal>
-            <div className="mx-auto flex w-fit items-center rounded-full bg-[#3B1675] p-1">
+            <div
+              role="group"
+              aria-label="Switch between shopping and selling"
+              className="mx-auto grid w-full max-w-[280px] grid-cols-2 items-center gap-1.5 rounded-full bg-[#3B1675] p-1.5 sm:flex sm:w-fit sm:max-w-none sm:gap-2"
+            >
               {(['shop', 'sell'] as const).map((item) => {
                 const Icon = item === 'shop' ? Bag : Store;
                 return (
-                  <button key={item} type="button" onClick={() => setMode(item)} aria-pressed={mode === item} className={`inline-flex items-center gap-2 rounded-full px-5 py-1.5 text-sm font-semibold capitalize transition-all duration-200 sm:px-7 sm:py-2.5 sm:text-base ${mode === item ? 'bg-white text-[#24133F] shadow-sm' : 'text-white hover:bg-white/10'}`}>
+                  <button
+                    key={item}
+                    type="button"
+                    onClick={() => setMode(item)}
+                    aria-pressed={mode === item}
+                    className={`inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold capitalize transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:min-w-[130px] sm:px-8 sm:py-3 sm:text-base ${mode === item ? 'bg-white text-[#24133F] shadow-sm' : 'text-white hover:bg-white/10'}`}
+                  >
                     <Icon size={18} /> {item}
                   </button>
                 );
@@ -434,19 +469,19 @@ export default function KoomboHero({ onSignIn, onSignUp, onSearch, onExplore, on
 
           {/* Headline */}
           <Reveal delay={100} className="flex justify-center">
-            <h1 className="kb-hero-title mt-4 w-full max-w-4xl px-2 text-center text-white sm:mt-7 sm:px-0">{content.title}</h1>
+            <h1 className="kb-hero-title mt-6 w-full max-w-4xl px-3 text-center text-white sm:mt-8 sm:px-0">{content.title}</h1>
           </Reveal>
 
           {/* Description */}
           <Reveal delay={180}>
-            <p className="kb-body-copy mx-auto mt-3 max-w-[620px] px-2 text-center text-[#D1D5DB] sm:mt-5 sm:px-0">{content.sub}</p>
+            <p className="kb-body-copy mx-auto mt-3 max-w-[34ch] px-3 text-center text-[#D1D5DB] sm:mt-5 sm:max-w-[620px] sm:px-0">{content.sub}</p>
           </Reveal>
 
           {/* CTA */}
           <Reveal delay={260}>
-            <div className="mt-4 flex justify-center sm:mt-7">
-              <a href={mode === 'sell' ? '/lister' : '#vendors'} onClick={() => { if (mode === 'shop') onExplore?.(); }} className="koombo-cta group inline-flex items-center justify-center gap-3 rounded-full bg-[#24133F] px-6 py-3 text-sm font-bold text-white hover:bg-[#3B1C66] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#24133F] sm:px-9 sm:py-4 sm:text-base">
-                <content.CtaIcon size={21} /> {content.cta}
+            <div className="mt-6 flex justify-center px-3 sm:mt-8 sm:px-0">
+              <a href={mode === 'sell' ? '/lister' : '#vendors'} onClick={() => { if (mode === 'shop') onExplore?.(); }} className="koombo-cta group inline-flex w-full max-w-[280px] items-center justify-center gap-2.5 rounded-full bg-[#24133F] px-6 py-3.5 text-[15px] font-bold text-white hover:bg-[#3B1C66] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#24133F] sm:w-auto sm:max-w-none sm:gap-3 sm:px-9 sm:py-4 sm:text-base">
+                <content.CtaIcon size={20} /> {content.cta}
                 <span className="transition-transform duration-200 group-hover:translate-x-1"><Arrow size={20} /></span>
               </a>
             </div>
@@ -454,14 +489,14 @@ export default function KoomboHero({ onSignIn, onSignUp, onSearch, onExplore, on
 
           {/* Main image: full width on phones */}
           <Reveal delay={350} y={25}>
-            <div className="mt-4 sm:mt-8 lg:mt-10">
+            <div className="mt-7 sm:mt-10 lg:mt-12">
               <HeroImage mode={mode} />
             </div>
           </Reveal>
 
           {/* Supporting text */}
           <Reveal delay={450}>
-            <p className="px-2 py-3 text-center text-xs font-medium tracking-wide text-[#D1D5DB]/80 sm:py-0 sm:pt-6 sm:text-sm">
+            <p className="mx-auto max-w-[30ch] px-3 pb-2 pt-4 text-center text-xs font-medium leading-5 tracking-wide text-[#D1D5DB]/80 sm:max-w-none sm:px-0 sm:pb-0 sm:pt-6 sm:text-sm">
               {mode === 'shop' ? 'Discover businesses. Connect with people. Shop with confidence.' : 'Your business. Your audience. Your opportunity.'}
             </p>
           </Reveal>
