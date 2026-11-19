@@ -5,7 +5,6 @@ import ScrollReveal from './components/ScrollReveal'
 import { CookieConsentProvider } from './components/cookies/CookieConsentProvider'
 import CookieConsentBanner from './components/cookies/CookieConsentBanner'
 import CookiePreferencesModal from './components/cookies/CookiePreferencesModal'
-import BonanzaSignupModal from './components/BonanzaSignupModal'
 import { defaultDescription, defaultKeywords, siteName, siteUrl } from '../lib/site'
 import './globals.css'
 
@@ -104,7 +103,6 @@ export default function RootLayout({
           {children}
           <CookieConsentBanner />
           <CookiePreferencesModal />
-          <BonanzaSignupModal />
           <ShuriChatButton />
         </CookieConsentProvider>
       </body>

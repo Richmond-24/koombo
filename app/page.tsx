@@ -7,7 +7,6 @@ import SellerPage from './components/SellerPage'
 import KoomboRider from './components/KoomboRider'
 import KoomboConnector from './components/KoomboConnector'
 import Display from './components/Display'
-import KoomboBonaza from './components/koomboBonaza'
 import Footer from './components/Footer'
 import { defaultDescription, siteName, siteUrl } from '../lib/site'
 
@@ -38,7 +37,6 @@ export default function Home() {
       <KoomboConnector />
       <Faq />
       <Display />
-      <KoomboBonaza />
       <Footer />
     </div>
   )
